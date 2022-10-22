@@ -1,0 +1,15 @@
+font_family FiraCode Nerd Font Mono
+font_size 18.0
+foreground #c0b18b
+background #262626
+background_opacity 0.8
+background_color 
+map cmd+1 goto_tab 1
+map cmd+2 goto_tab 2
+map cmd+3 goto_tab 3
+map cmd+4 goto_tab 4
+map cmd+5 goto_tab 5
+
+macos_titlebar_color background
+
+include dracula

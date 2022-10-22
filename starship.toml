@@ -1,0 +1,35 @@
+format = """
+$character\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+"""
+# switch to this format for very verbose prompt (versions of languages, package versions, etc.)
+# format = "$character $all"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+[git_branch]
+# makes sure the dotfiles repository is ignored
+ignore_branches = ["dotfiles"]
+[git_status]
+format = '( [$conflicted](fg:red)[$untracked](fg:green)[$renamed](fg:yellow)[$modified](fg:yellow)[$deleted](fg:red)[$ahead_behind ]($style))'
+style = 'blue'
+conflicted = "≄ "
+untracked = " $count "
+modified = " $count "
+renamed = " $count "
+deleted = " $count "
+[cmd_duration]
+format = "for [$duration]($style) "
