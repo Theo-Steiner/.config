@@ -72,13 +72,17 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use({
-		"~/WebDev/warped.nvim",
-		requires = { "tjdevries/colorbuddy.nvim" },
-		config = function()
-			require("config._warped")
-		end,
-	})
+	use({ 'folke/tokyonight.nvim', config = function()
+		require("config._tokyonight")
+	end })
+
+	-- use({
+	-- 	"~/dev/warped.nvim",
+	-- 	requires = { "tjdevries/colorbuddy.nvim" },
+	-- 	config = function()
+	-- 		require("config._warped")
+	-- 	end,
+	-- })
 
 	use({
 		"nvim-neo-tree/neo-tree.nvim",

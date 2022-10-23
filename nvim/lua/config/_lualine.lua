@@ -1,19 +1,8 @@
-local custom_auto = require("lualine.themes.auto")
+local custom_auto = require("lualine.themes.tokyonight")
 -- Change the background of lualine_c section to NONE for all modes
 custom_auto.normal.c.bg = "None"
-custom_auto.visual.c.bg = "None"
-custom_auto.insert.c.bg = "None"
-custom_auto.command.c.bg = "None"
--- Change the background of lualine_b section to NONE for all modes
-custom_auto.normal.b.bg = "None"
-custom_auto.visual.b.bg = "None"
-custom_auto.insert.b.bg = "None"
-custom_auto.command.b.bg = "None"
 -- make section c font bold
 custom_auto.normal.c.gui = "bold"
-custom_auto.visual.c.gui = "bold"
-custom_auto.insert.c.gui = "bold"
-custom_auto.command.c.gui = "bold"
 
 -- a utility to trim the path if it is longer than 45 characters
 local format_path = function(str)
