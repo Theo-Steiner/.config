@@ -18,11 +18,11 @@ $git_status\
 # format = "$character $all"
 
 [character]
-success_symbol = "[➜](bold green)"
-error_symbol = "[➜](bold red)"
-[git_branch]
-# makes sure the dotfiles repository is ignored
-ignore_branches = ["dotfiles"]
+success_symbol = " [❯ \\[I\\]](bold green) "
+error_symbol = " [❯ \\[I\\]](bold red) "
+vicmd_symbol = " [❯ \\[N\\]](bold blue) "
+vimcmd_visual_symbol = " [❯ \\[V\\]](bold magenta) "
+
 [git_status]
 format = '( [$conflicted](fg:red)[$untracked](fg:green)[$renamed](fg:yellow)[$modified](fg:yellow)[$deleted](fg:red)[$ahead_behind ]($style))'
 style = 'blue'
