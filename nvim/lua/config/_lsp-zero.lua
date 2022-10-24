@@ -27,8 +27,8 @@ lsp_zero.ensure_installed(default_servers)
 
 -- helper function to disable format capabilities
 local disable_formatting = function(client)
-	client.resolved_capabilities.document_formatting = false
-	client.resolved_capabilities.document_range_formatting = false
+	client.server_capabilities.document_formatting = false
+	client.server_capabilities.document_range_formatting = false
 end
 
 for servername, native_formatting_disabled in pairs(default_servers) do
@@ -97,6 +97,17 @@ lsp_zero.setup_nvim_cmp({
 			return vim_item
 		end,
 	},
+	completion = {
+		get_trigger_characters = function(trigger_characters)
+			local new_trigger_characters = {}
+			for _, char in ipairs(trigger_characters) do
+				if char ~= '>' then
+					table.insert(new_trigger_characters, char)
+				end
+			end
+			return new_trigger_characters
+		end
+	}
 })
 
 -- setup the lsp with the above config
