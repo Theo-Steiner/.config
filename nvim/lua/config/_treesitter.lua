@@ -1,4 +1,3 @@
--- astro not yet auto detected
 vim.cmd([[autocmd BufRead,BufEnter *.astro set filetype=astro]])
 
 require("nvim-treesitter.configs").setup({
