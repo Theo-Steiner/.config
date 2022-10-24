@@ -7,8 +7,8 @@ vim.g.AutoFormattingEnabled = true
 
 -- add commands for to format and toggle auto formatting
 vim.cmd([[command! Formatting lua vim.g.AutoFormattingEnabled = not vim.g.AutoFormattingEnabled]])
-vim.cmd([[command! Fmt lua vim.lsp.buf.formatting_sync()]])
-vim.cmd([[command! Format lua vim.lsp.buf.formatting_sync()]])
+vim.cmd([[command! Fmt lua vim.lsp.buf.format()]])
+vim.cmd([[command! Format lua vim.lsp.buf.format()]])
 
 -- augroup for formatting
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -23,7 +23,7 @@ AUTO_FORMAT = function(client, bufnr)
 			callback = function()
 				-- TODO: on 0.8 => vim.lsp.buf.format({ bufnr = bufnr }) instead
 				if vim.g.AutoFormattingEnabled then
-					vim.lsp.buf.formatting_sync()
+					vim.lsp.buf.format()
 					-- keep gitsigns in sync after formatting
 					require("gitsigns").refresh()
 				end
