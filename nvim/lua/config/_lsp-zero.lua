@@ -20,6 +20,7 @@ local default_servers = {
 	volar = true,
 	jsonls = true,
 	sumneko_lua = false,
+	emmet_ls = true,
 }
 
 -- ensure they are installed
@@ -33,6 +34,7 @@ end
 
 for servername, native_formatting_disabled in pairs(default_servers) do
 	local additional_config
+	local modified_filetypes
 	-- config for specific LSPs (e.g. setup lua workspace/globals)
 	if servername == "sumneko_lua" then
 		local runtime_path = vim.split(package.path, ";")
@@ -55,10 +57,13 @@ for servername, native_formatting_disabled in pairs(default_servers) do
 				},
 			},
 		}
+	elseif servername == "emmet_ls" then
+		modified_filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'css', 'sass', 'scss', 'less' }
 	end
 	lsp_zero.configure(
 		servername,
-		{ on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT, settings = additional_config }
+		{ on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT, filetypes = modified_filetypes or nil,
+			settings = additional_config }
 	)
 end
 -- icons to display alongside completion items

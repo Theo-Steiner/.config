@@ -19,6 +19,10 @@ end
 -- load modules with configuration
 require("config.basics")
 require("config.keybindings")
-require("config.packages")
-require("config.lsp")
-require("config.appearance")
+if vim.g.vscode then
+	-- don't load anything for vs code extension
+else
+	require("config.packages")
+	require("config.lsp")
+	require("config.appearance")
+end

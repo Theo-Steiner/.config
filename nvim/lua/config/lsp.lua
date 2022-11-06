@@ -6,6 +6,7 @@
 vim.g.AutoFormattingEnabled = true
 
 -- add commands for to format and toggle auto formatting
+vim.cmd([[command! F lua vim.g.AutoFormattingEnabled = not vim.g.AutoFormattingEnabled]])
 vim.cmd([[command! Formatting lua vim.g.AutoFormattingEnabled = not vim.g.AutoFormattingEnabled]])
 vim.cmd([[command! Fmt lua vim.lsp.buf.format()]])
 vim.cmd([[command! Format lua vim.lsp.buf.format()]])
@@ -42,9 +43,6 @@ require("config._lsp-zero")
 -- configure null-ls, a "fake language server that allows processes
 -- like prettier/eslint to hook into nvim's lsp-service
 require("config._null-ls")
-
--- add custom keybinding for copilot
-require("config._copilot")
 
 -- ****************************************
 -- ************** Keybindings *************

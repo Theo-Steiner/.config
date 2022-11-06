@@ -4,9 +4,32 @@
 
 vim.cmd([[packadd packer.nvim]])
 
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
+end
+
+local _ = ensure_packer()
+
 return require("packer").startup(function()
 	-- Packer manages itself
 	use("wbthomason/packer.nvim")
+
+	-- highlight unique letters on f press
+	use {
+		'jinh0/eyeliner.nvim',
+		config = function()
+			require 'eyeliner'.setup {
+				highlight_on_key = true
+			}
+		end
+	}
 
 	-- Language server setup with zero config
 	use({
@@ -113,9 +136,6 @@ return require("packer").startup(function()
 
 	-- get correct commentstring before commenting (configured in _treesitter.lua)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-
-	-- Github Copilot lua
-	-- use("github/copilot.vim")
 
 	-- Git signs
 	use({

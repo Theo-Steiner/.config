@@ -6,10 +6,11 @@
 Set.encoding = "UTF-8"
 
 -- preferences for how stuff should be indented
-Set.tabstop = 4
-Set.softtabstop = 4
-Set.shiftwidth = 4
-Set.expandtab = false
+-- TODO: find out why this messes with prettier?
+Set.tabstop = 2
+Set.softtabstop = 2
+Set.shiftwidth = 2
+Set.expandtab = true
 Set.smartindent = true
 
 -- scroll screen 8 lines before the cursor hits the edge
