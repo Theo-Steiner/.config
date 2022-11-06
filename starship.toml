@@ -1,18 +1,14 @@
 format = """
-$character\
+   \
 $username\
-$hostname\
-$localip\
-$shlvl\
-$singularity\
-$kubernetes\
 $directory\
-$vcsh\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
+$line_break\
+$character\
 """
 # switch to this format for very verbose prompt (versions of languages, package versions, etc.)
 # format = "$character $all"
@@ -21,7 +17,7 @@ $git_status\
 success_symbol = " [❯ \\[I\\]](bold green) "
 error_symbol = " [❯ \\[I\\]](bold red) "
 vicmd_symbol = " [❯ \\[N\\]](bold blue) "
-vimcmd_visual_symbol = " [❯ \\[V\\]](bold magenta) "
+vimcmd_visual_symbol = " [❯ \\[V\\]](bold purple) "
 
 [git_status]
 format = '( [$conflicted](fg:red)[$untracked](fg:green)[$renamed](fg:yellow)[$modified](fg:yellow)[$deleted](fg:red)[$ahead_behind ]($style))'
