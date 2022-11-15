@@ -17,6 +17,8 @@ Map("", "<leader>c", function()
 end
 )
 
+Map("n", "<ESC>", ":noh<CR>")
+
 -- open file tree witvh <leader> p
 Map("n", "<leader>pv", ":Neotree reveal toggle<cr>")
 
