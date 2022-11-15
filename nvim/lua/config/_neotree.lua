@@ -12,6 +12,9 @@ require("neo-tree").setup({
 	popup_border_style = "rounded",
 	window = {
 		width = 35,
+		mappings = {
+			["/"] = "noop"
+		}
 	},
 	git_status_async = true,
 	filesystem = {
