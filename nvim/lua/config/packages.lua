@@ -89,7 +89,7 @@ return require("packer").startup(function()
 	-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter' },
+		requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter', 'nvim-telescope/telescope-live-grep-args.nvim' },
 		config = function()
 			require("config._telescope")
 		end,

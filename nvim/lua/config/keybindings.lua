@@ -8,7 +8,7 @@ Map("n", "<leader><CR>", "<cmd>lua Reload()<cr>")
 -- use <leader> f to open fuzzy finder preview to find file in project
 Map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
 -- use <leader> f to open fuzzy finder preview to live-grep in project
-Map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+Map("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 
 -- <leader> c toggles the current line or current selection to be a comment
 Map("", "<leader>c", function()
