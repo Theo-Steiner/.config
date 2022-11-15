@@ -115,7 +115,12 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- surround selected code, mapped to shift-S
+	use {
+		"windwp/nvim-autopairs",
+		config = function() require("nvim-autopairs").setup {} end
+	}
+
+	-- surround selected code, mapped to shift-S (TPOPE!)
 	use({
 		"tpope/vim-surround",
 		config = function()
@@ -123,16 +128,14 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use {
-		"windwp/nvim-autopairs",
-		config = function() require("nvim-autopairs").setup {} end
-	}
-
 	-- legendary git plugin
 	use("tpope/vim-fugitive")
 
-	-- comment plugin... lol @tpope
+	-- no explanation needed...
 	use("tpope/vim-commentary")
+
+	-- I mean just look at tpope go
+	use("tpope/vim-sleuth")
 
 	-- get correct commentstring before commenting (configured in _treesitter.lua)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
