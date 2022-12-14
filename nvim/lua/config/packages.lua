@@ -120,7 +120,9 @@ return require("packer").startup(function()
 		config = function() require("nvim-autopairs").setup {} end
 	}
 
-	-- surround selected code, mapped to shift-S (TPOPE!)
+	-- ### TPOPE SECTION START ###
+	-- how about surrounding selected code? mapped to shift-S
+	-- svelte specifics defined in _surround
 	use({
 		"tpope/vim-surround",
 		config = function()
@@ -128,14 +130,18 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- legendary git plugin
+	-- git plugin by tpope
 	use("tpope/vim-fugitive")
 
-	-- no explanation needed...
+	-- comment plugin by tpope. Toggle mapped to <leader>c
 	use("tpope/vim-commentary")
 
-	-- I mean just look at tpope go
+	-- make tpopes plugins dot repeatable
+	use("tpope/vim-repeat")
+
+	-- I mean just look at this man go
 	use("tpope/vim-sleuth")
+	-- ### TPOPE SECTION END ###
 
 	-- get correct commentstring before commenting (configured in _treesitter.lua)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
