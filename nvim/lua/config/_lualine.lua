@@ -6,7 +6,7 @@ custom_auto.normal.c.gui = "bold"
 
 -- a utility to trim the path if it is longer than 45 characters
 local format_path = function(str)
-	if string.len(str) < 45 then
+	if string.len(str) < 60 then
 		return str
 	end
 	local s = {}
@@ -15,7 +15,7 @@ local format_path = function(str)
 	end
 	local res = ""
 	for i = 1, #s do
-		if i < 3 then
+		if i < 5 then
 			res = "/" .. s[#s + 1 - i] .. res
 		else
 			return "..." .. res
