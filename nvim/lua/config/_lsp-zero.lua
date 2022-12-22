@@ -13,17 +13,14 @@ lsp_zero.set_preferences({
 
 -- a list of default servers with a boolean value indicating whether they have their formatting disabled to defer formatting to null_ls
 local default_servers = {
-	html = true,
-	cssls = true,
-	tsserver = true,
-	svelte = true,
-	volar = true,
-	jsonls = true,
-	sumneko_lua = false,
-	emmet_ls = true,
+	'html' ,
+	'cssls',
+	'tsserver',
+	'svelte',
+	'volar',
+	'jsonls',
+	'emmet_ls',
 }
-
--- ensure they are installed
 lsp_zero.ensure_installed(default_servers)
 
 -- helper function to disable format capabilities
@@ -57,14 +54,16 @@ for servername, native_formatting_disabled in pairs(default_servers) do
 				},
 			},
 		}
-	elseif servername == "emmet_ls" then
-		modified_filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'css', 'sass', 'scss', 'less' }
-	end
+	else
+		if servername == "emmet_ls" then
+			modified_filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'css', 'sass', 'scss', 'less' }
+		end
 	lsp_zero.configure(
 		servername,
 		{ on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT, filetypes = modified_filetypes or nil,
 			settings = additional_config }
 	)
+	end
 end
 -- icons to display alongside completion items
 local kind_icons = {
