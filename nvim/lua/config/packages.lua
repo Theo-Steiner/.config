@@ -31,14 +31,30 @@ return require("packer").startup(function()
 		end
 	}
 
+	-- use to disable tsserver in vue projects, so that volar can takeover
+	use({
+		"MunifTanjim/exrc.nvim",
+		config = function()
+			vim.o.exrc = false
+			require("exrc").setup({
+				files = {
+					".nvimrc.lua",
+					".nvimrc",
+					".exrc.lua",
+					".exrc",
+				},
+			})
+		end,
+	})
+
 	-- Language server setup with zero config
 	use({
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
 			-- LSP Support
-			{'neovim/nvim-lspconfig'},
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
+			{ 'neovim/nvim-lspconfig' },
+			{ 'williamboman/mason-lspconfig.nvim' },
+			{ 'williamboman/mason.nvim' },
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-buffer" },

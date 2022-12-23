@@ -13,10 +13,11 @@ lsp_zero.set_preferences({
 
 -- a list of default servers with a boolean value indicating whether they have their formatting disabled to defer formatting to null_ls
 local default_servers = {
-	'html' ,
+	'html',
 	'cssls',
 	'tsserver',
 	'svelte',
+	'sumneko_lua',
 	'volar',
 	'jsonls',
 	'emmet_ls',
@@ -29,11 +30,13 @@ local disable_formatting = function(client)
 	client.server_capabilities.document_range_formatting = false
 end
 
-for servername, native_formatting_disabled in pairs(default_servers) do
+for _, servername in pairs(default_servers) do
+	local native_formatting_disabled = true
 	local additional_config
 	local modified_filetypes
 	-- config for specific LSPs (e.g. setup lua workspace/globals)
 	if servername == "sumneko_lua" then
+		native_formatting_disabled = false
 		local runtime_path = vim.split(package.path, ";")
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
@@ -44,7 +47,7 @@ for servername, native_formatting_disabled in pairs(default_servers) do
 					defaultConfig = { indent_style = "tab", indent_size = 4 },
 				},
 				diagnostics = {
-					globals = { "vim", "use", "AUTO_FORMAT" },
+					globals = { "vim", "use", "AUTO_FORMAT", VOLAR_TAKE_OVER },
 				},
 				runtime = { version = "LuaJIT", path = runtime_path },
 				workspace = {
@@ -54,16 +57,21 @@ for servername, native_formatting_disabled in pairs(default_servers) do
 				},
 			},
 		}
-	else
-		if servername == "emmet_ls" then
-			modified_filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'css', 'sass', 'scss', 'less' }
-		end
+	end
+	if servername == "emmet_ls" then
+		modified_filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'css', 'sass', 'scss', 'less' }
+	end
+	if servername == "volar" then
+		modified_filetypes = { 'vue', 'typescript', 'javascript' }
+	end
 	lsp_zero.configure(
 		servername,
-		{ on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT, filetypes = modified_filetypes or nil,
-			settings = additional_config }
+		{
+			on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT,
+			filetypes = modified_filetypes,
+			settings = additional_config
+		}
 	)
-	end
 end
 -- icons to display alongside completion items
 local kind_icons = {
