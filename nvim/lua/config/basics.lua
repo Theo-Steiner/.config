@@ -5,10 +5,6 @@
 -- because languages
 Set.encoding = "UTF-8"
 
--- preferences for how stuff should be indented
--- TODO: find out why this messes with prettier?
-Set.smartindent = true
-
 -- scroll screen 8 lines before the cursor hits the edge vertically and 5 horizontally
 Set.scrolloff = 8
 Set.sidescrolloff = 5

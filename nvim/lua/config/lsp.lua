@@ -22,9 +22,8 @@ AUTO_FORMAT = function(client, bufnr)
 			group = augroup,
 			buffer = bufnr,
 			callback = function()
-				-- TODO: on 0.8 => vim.lsp.buf.format({ bufnr = bufnr }) instead
 				if vim.g.AutoFormattingEnabled then
-					vim.lsp.buf.format()
+					vim.lsp.buf.format({ bufnr = bufnr })
 					-- keep gitsigns in sync after formatting
 					require("gitsigns").refresh()
 				end
