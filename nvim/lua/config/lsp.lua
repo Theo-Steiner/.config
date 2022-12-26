@@ -11,6 +11,19 @@ vim.cmd([[command! Formatting lua vim.g.AutoFormattingEnabled = not vim.g.AutoFo
 vim.cmd([[command! Fmt lua vim.lsp.buf.format()]])
 vim.cmd([[command! Format lua vim.lsp.buf.format()]])
 
+-- filter what servers are used to format
+local lsp_formatting = function(bufnr)
+	vim.lsp.buf.format({
+		filter = function(client)
+			-- servers that should be used for formatting go here
+			return client.name == "null-ls" or client.name == "sumneko_lua"
+		end,
+		bufnr = bufnr,
+	})
+	-- keep gitsigns in sync after formatting
+	require("gitsigns").refresh()
+end
+
 -- augroup for formatting
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -23,9 +36,7 @@ AUTO_FORMAT = function(client, bufnr)
 			buffer = bufnr,
 			callback = function()
 				if vim.g.AutoFormattingEnabled then
-					vim.lsp.buf.format({ bufnr = bufnr })
-					-- keep gitsigns in sync after formatting
-					require("gitsigns").refresh()
+					lsp_formatting(bufnr)
 				end
 			end,
 		})

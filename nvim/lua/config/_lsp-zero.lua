@@ -24,19 +24,11 @@ local default_servers = {
 }
 lsp_zero.ensure_installed(default_servers)
 
--- helper function to disable format capabilities
-local disable_formatting = function(client)
-	client.server_capabilities.document_formatting = false
-	client.server_capabilities.document_range_formatting = false
-end
-
 for _, servername in pairs(default_servers) do
-	local native_formatting_disabled = true
 	local additional_config
 	local modified_filetypes
 	-- config for specific LSPs (e.g. setup lua workspace/globals)
 	if servername == "sumneko_lua" then
-		native_formatting_disabled = false
 		local runtime_path = vim.split(package.path, ";")
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
@@ -47,7 +39,7 @@ for _, servername in pairs(default_servers) do
 					defaultConfig = { indent_style = "tab", indent_size = 4 },
 				},
 				diagnostics = {
-					globals = { "vim", "use", "AUTO_FORMAT", VOLAR_TAKE_OVER },
+					globals = { "vim", "use", "AUTO_FORMAT" },
 				},
 				runtime = { version = "LuaJIT", path = runtime_path },
 				workspace = {
@@ -67,7 +59,7 @@ for _, servername in pairs(default_servers) do
 	lsp_zero.configure(
 		servername,
 		{
-			on_attach = native_formatting_disabled and disable_formatting or AUTO_FORMAT,
+			on_attach = AUTO_FORMAT,
 			filetypes = modified_filetypes,
 			settings = additional_config
 		}
