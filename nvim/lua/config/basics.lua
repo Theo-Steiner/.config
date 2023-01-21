@@ -9,8 +9,9 @@ Set.encoding = "UTF-8"
 -- TODO: find out why this messes with prettier?
 Set.smartindent = true
 
--- scroll screen 8 lines before the cursor hits the edge
+-- scroll screen 8 lines before the cursor hits the edge vertically and 5 horizontally
 Set.scrolloff = 8
+Set.sidescrolloff = 5
 
 -- activate linenumbers
 Set.number = true
