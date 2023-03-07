@@ -9,6 +9,7 @@ if status is-interactive
 end
 
 export EDITOR='nvim'
+export VISUAL='nvim'
 
 function vi
 	nvim $argv
@@ -23,5 +24,3 @@ function fish_greeting
     echo Time: (set_color yellow; date +%T; set_color normal)
 	echo Device: (set_color purple; echo $hostname; set_color normal)
 end
-
-
