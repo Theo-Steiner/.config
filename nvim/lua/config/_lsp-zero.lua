@@ -17,7 +17,7 @@ local default_servers = {
 	'cssls',
 	'tsserver',
 	'svelte',
-	'sumneko_lua',
+	'lua_ls',
 	'volar',
 	'jsonls',
 	'emmet_ls',
@@ -28,7 +28,7 @@ for _, servername in pairs(default_servers) do
 	local additional_config
 	local modified_filetypes
 	-- config for specific LSPs (e.g. setup lua workspace/globals)
-	if servername == "sumneko_lua" then
+	if servername == "lua_ls" then
 		local runtime_path = vim.split(package.path, ";")
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
