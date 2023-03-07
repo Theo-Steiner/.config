@@ -147,7 +147,12 @@ return require("packer").startup(function()
 	})
 
 	-- git plugin by tpope
-	use("tpope/vim-fugitive")
+	use({
+		"tpope/vim-fugitive",
+		config = function()
+			vim.opt.diffopt = vim.opt.diffopt + "vertical"
+		end,
+	})
 
 	-- comment plugin by tpope. Toggle mapped to <leader>c
 	use("tpope/vim-commentary")
