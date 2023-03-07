@@ -3,4 +3,5 @@ configstore
 gh
 github-copilot
 nvim/plugin
+fish/functions
 .gitconfig
