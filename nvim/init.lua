@@ -2,8 +2,14 @@
 Set = vim.opt
 
 vim.g.mapleader = " "
-Map = function(...)
-	vim.keymap.set(...)
+Map = function(mode, binding, cmd, options)
+	if options == nil then
+		options = {}
+	end
+	if options.silent == nil then
+		options.silent = true
+	end
+	vim.keymap.set(mode, binding, cmd, options)
 end
 
 -- helper function to reload lua modules
