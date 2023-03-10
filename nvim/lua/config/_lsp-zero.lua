@@ -11,7 +11,7 @@ lsp_zero.set_preferences({
 	},
 })
 
--- a list of default servers with a boolean value indicating whether they have their formatting disabled to defer formatting to null_ls
+-- a list of default servers
 local default_servers = {
 	'html',
 	'cssls',
@@ -36,7 +36,7 @@ for _, servername in pairs(default_servers) do
 			Lua = {
 				format = {
 					enable = true,
-					defaultConfig = { indent_style = "tab", indent_size = 4 },
+					defaultConfig = { indent_style = "space", indent_size = 2 },
 				},
 				diagnostics = {
 					globals = { "vim", "use", "AUTO_FORMAT" },

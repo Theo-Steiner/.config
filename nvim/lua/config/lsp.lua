@@ -16,7 +16,7 @@ local lsp_formatting = function(bufnr)
 	vim.lsp.buf.format({
 		filter = function(client)
 			-- servers that should be used for formatting go here
-			return client.name == "null-ls" or client.name == "sumneko_lua"
+			return client.name == "null-ls" or client.name == "lua_ls"
 		end,
 		bufnr = bufnr,
 	})
