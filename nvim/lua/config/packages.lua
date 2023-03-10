@@ -6,9 +6,9 @@ vim.cmd([[packadd packer.nvim]])
 
 local ensure_packer = function()
 	local fn = vim.fn
-	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 		vim.cmd [[packadd packer.nvim]]
 		return true
 	end
@@ -23,9 +23,9 @@ return require("packer").startup(function()
 
 	-- highlight unique letters on f press
 	use {
-		'jinh0/eyeliner.nvim',
+		"jinh0/eyeliner.nvim",
 		config = function()
-			require 'eyeliner'.setup {
+			require "eyeliner".setup {
 				highlight_on_key = true
 			}
 		end
@@ -52,9 +52,9 @@ return require("packer").startup(function()
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig' },
-			{ 'williamboman/mason-lspconfig.nvim' },
-			{ 'williamboman/mason.nvim' },
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "williamboman/mason.nvim" },
 			-- Autocompletion
 			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-buffer" },
@@ -82,7 +82,7 @@ return require("packer").startup(function()
 	})
 
 	-- treesitter context shows current block at the very top
-	use 'nvim-treesitter/nvim-treesitter-context'
+	use "nvim-treesitter/nvim-treesitter-context"
 
 	-- Dependencies for modern nvim plugins (for telescope, neo-tree, lualine etc)
 	use("kyazdani42/nvim-web-devicons")
@@ -102,18 +102,18 @@ return require("packer").startup(function()
 		end,
 	})
 
+	use({ "folke/tokyonight.nvim", config = function()
+		require("config._tokyonight")
+	end })
+
 	-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { 'nvim-lua/plenary.nvim', 'nvim-treesitter/nvim-treesitter', 'nvim-telescope/telescope-live-grep-args.nvim' },
+		requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope-live-grep-args.nvim" },
 		config = function()
 			require("config._telescope")
 		end,
 	})
-
-	use({ 'folke/tokyonight.nvim', config = function()
-		require("config._tokyonight")
-	end })
 
 	-- use({
 	-- 	"~/dev/warped.nvim",
