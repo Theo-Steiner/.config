@@ -5,6 +5,8 @@
 -- because languages
 Set.encoding = "UTF-8"
 
+Set.tabstop = 2
+
 -- scroll screen 8 lines before the cursor hits the edge vertically and 5 horizontally
 Set.scrolloff = 8
 Set.sidescrolloff = 5

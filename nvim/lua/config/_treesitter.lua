@@ -4,9 +4,7 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = "all",
 	-- disable because they throw errors I don't understand
 	ignore_install = { "phpdoc", "markdown_inline", "cpp" },
-
 	sync_install = false,
-
 	highlight = {
 		enable = true,
 		additional_vim_regex_highlighting = false,
