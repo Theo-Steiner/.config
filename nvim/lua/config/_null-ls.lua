@@ -31,4 +31,3 @@ null_ls.setup({
 	},
 	on_attach = AUTO_FORMAT,
 })
-

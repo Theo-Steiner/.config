@@ -92,12 +92,6 @@ return require("packer").startup(function()
 
 	use("nvim-lua/plenary.nvim")
 
-	use({ "rcarriga/nvim-notify", config = function()
-		require("notify").setup({
-			background_colour = "#1f2335",
-		})
-	end })
-
 	-- Trouble: better quickfixlists
 	use({
 		"folke/trouble.nvim",
@@ -108,17 +102,20 @@ return require("packer").startup(function()
 		end,
 	})
 
-	use({ "folke/tokyonight.nvim", config = function()
-		require("config._tokyonight")
-	end })
+	use({
+		"folke/tokyonight.nvim",
+		config = function()
+			require("config._tokyonight")
+		end
+	})
 
-	use({ "folke/noice.nvim", config = function()
-		require("noice").setup({
-		})
-	end,
+	use({
+		"folke/noice.nvim",
+		config = function()
+			require("config._noice")
+		end,
 		requires = {
 			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
 		}
 	})
 
@@ -126,7 +123,8 @@ return require("packer").startup(function()
 	-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
 	use({
 		"nvim-telescope/telescope.nvim",
-		requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope-live-grep-args.nvim" },
+		requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+			"nvim-telescope/telescope-live-grep-args.nvim" },
 		config = function()
 			require("config._telescope")
 		end,
