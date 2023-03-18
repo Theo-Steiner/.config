@@ -1,7 +1,11 @@
-raycast
-configstore
-gh
-github-copilot
+# ignore everything on top level
+/*
+# ignore in unignored subdirs
 nvim/plugin
 fish/functions
-.gitconfig
+# unignore
+!git
+!nvim
+!fish
+!kitty
+!starship.toml
