@@ -5,7 +5,12 @@
 -- because languages
 Set.encoding = "UTF-8"
 
+-- tabs are two spaces wide
 Set.tabstop = 2
+
+-- disable netrw
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
 
 -- scroll screen 8 lines before the cursor hits the edge vertically and 5 horizontally
 Set.scrolloff = 8
