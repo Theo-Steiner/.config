@@ -49,11 +49,3 @@ Set.cb = "unnamed"
 
 -- hides 'No write since last change (add ! to override)' error
 Set.hidden = true
-
--- fixes broken width of neovim/neovim/issues/11330
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	callback = function()
-		local pid, WINCH = vim.fn.getpid(), vim.loop.constants.SIGWINCH
-		vim.defer_fn(function() vim.loop.kill(pid, WINCH) end, 20)
-	end
-})
