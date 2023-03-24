@@ -3,14 +3,15 @@ return {
 	keys = {
 		-- LSP keybindings
 		{ "K", "<cmd>lua vim.lsp.buf.hover()<cr>" },
-		{ "gd", "<cmd>lua vim.lsp.buf.definition()<cr>" },
 		{ "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>" },
 		{ "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>" },
-		{ "gt", "<cmd>lua vim.lsp.buf.type_definition()<cr>" },
-		{ "gr", "<cmd>TroubleToggle lsp_references<cr>" },
 		{ "s", "<cmd>lua vim.lsp.buf.rename()<cr>" },
 		{ "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>" },
 		{ "gl", "<cmd>lua vim.diagnostic.open_float()<cr>" },
+		-- see config._trouble
+		{ "gt" },
+		{ "gr" },
+		{ "gd" },
 	},
 	config = function()
 		-- configure lsp-zero, a wrapper around nvim-cmp for n00bs like me
@@ -55,7 +56,7 @@ return {
 							defaultConfig = { indent_style = "space", indent_size = 2 },
 						},
 						diagnostics = {
-							globals = { "vim", "use", "AUTO_FORMAT" },
+							globals = { "vim", "use", "AUTO_FORMAT", "Set", "Map" },
 						},
 						runtime = { version = "LuaJIT", path = runtime_path },
 						workspace = {
@@ -140,13 +141,11 @@ return {
 		"williamboman/mason.nvim",
 		-- Autocompletion
 		"hrsh7th/nvim-cmp",
+		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
-		"saadparwaiz1/cmp_luasnip",
-		"hrsh7th/cmp-nvim-lsp",
 		"hrsh7th/cmp-nvim-lua",
-		-- Snippets
+		-- Snippet Engine
 		"L3MON4D3/LuaSnip",
-		"rafamadriz/friendly-snippets",
 	},
 }
