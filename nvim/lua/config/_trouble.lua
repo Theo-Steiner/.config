@@ -40,7 +40,6 @@ return {
 	"folke/trouble.nvim",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
-		"VonHeikemen/lsp-zero.nvim",
 	},
 	keys = {
 		{ "gt", "<cmd>TroubleToggle lsp_type_definitions<cr>" },

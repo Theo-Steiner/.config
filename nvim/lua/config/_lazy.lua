@@ -41,7 +41,8 @@ end
 M.onBufferLoad = function(plugins)
 	return modify(
 		plugins,
-		{ lazy = true,
+		{
+			lazy = true,
 			event = { "BufReadPre", "BufNewFile" },
 		}
 	)
@@ -69,7 +70,8 @@ end
 
 M.lazily = function(plugins)
 	return modify(
-		plugins,
+	-- make table, so config=true doesn't won't be set
+		{ plugins },
 		{ lazy = true }
 	)
 end

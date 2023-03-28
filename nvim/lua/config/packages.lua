@@ -23,8 +23,8 @@ return require("lazy").setup({
 		"windwp/nvim-autopairs",
 		-- comment plugin by tpope. Toggle mapped to <leader>c
 		require("config._commentary"),
+		require("config._cmp")
 	}),
-
 	_load.lazily({
 		-- *********** Triggered by Keys *************
 		-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
@@ -35,6 +35,9 @@ return require("lazy").setup({
 		require("config._neotree"),
 	}),
 	_load.onBufferLoad({
+		require("config._lsp"),
+		-- allows non-lsp processes (prettier, eslint) to run lsp-like
+		require("config._null-ls"),
 		-- Git signs
 		"lewis6991/gitsigns.nvim",
 		-- Primeagen plugin to jump through files
@@ -54,12 +57,6 @@ return require("lazy").setup({
 		require("config._treesitter"),
 	}),
 	_load.onIdle({
-		-- Language server setup with (almost) zero config
-		require("config._lsp-zero"),
-		-- allows non-lsp processes (prettier, eslint) to run lsp-like
-		require("config._null-ls"),
-		-- Noice, manage notifications and get fancy command prompt and hover info
-		require("config._noice"),
 		-- make tpopes plugins dot repeatable
 		"tpope/vim-repeat",
 		-- for surrounding selected code, mapped to shift-S
@@ -67,5 +64,7 @@ return require("lazy").setup({
 		require("config._surround"),
 		-- highlight unique letters on f press
 		require("config._eyeliner"),
+		-- Noice, manage notifications and get fancy command prompt and hover info
+		require("config._noice"),
 	})
 })
