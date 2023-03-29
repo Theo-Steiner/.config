@@ -46,7 +46,6 @@ return {
 		-- Snippet Engine
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
-		"onsails/lspkind.nvim"
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -96,9 +95,9 @@ return {
 					}),
 				}),
 				sources = cmp.config.sources({
-						{ name = 'nvim_lsp' },
-						{ name = 'vsnip' },
-					},
+					{ name = 'nvim_lsp' },
+					{ name = 'vsnip' },
+				},
 					{
 						{ name = 'buffer' },
 					}),
@@ -111,7 +110,6 @@ return {
 				-- },
 				completion = {
 					-- TODO
-					-- "hrsh7th/cmp-nvim-lsp",
 					-- "hrsh7th/cmp-buffer",
 					-- "hrsh7th/cmp-path",
 					-- "hrsh7th/cmp-nvim-lua",

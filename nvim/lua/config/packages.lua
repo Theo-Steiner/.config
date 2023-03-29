@@ -9,9 +9,6 @@ return require("lazy").setup({
 		require("config._tokyonight"),
 		-- startup screen
 		require("config._alpha"),
-		-- use to disable tsserver in vue projects, so that volar can takeover
-		-- replace with folke neoconf
-		require("config._exrc"),
 	}),
 
 	_load.onInsertEnter({
