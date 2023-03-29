@@ -11,6 +11,7 @@ return {
 					"",
 					false)
 			end,
+			mode = { "n", "v" },
 			silent = true
 		}
 	}
