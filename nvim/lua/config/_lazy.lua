@@ -38,7 +38,7 @@ local modify = function(plugins, config)
 	return plugins
 end
 
-M.onBufferLoad = function(plugins)
+M.on_buf_read = function(plugins)
 	return modify(
 		plugins,
 		{
@@ -48,14 +48,14 @@ M.onBufferLoad = function(plugins)
 	)
 end
 
-M.onInsertEnter = function(plugins)
+M.on_insert_enter = function(plugins)
 	return modify(
 		plugins,
 		{ lazy = true, event = "InsertEnter" }
 	)
 end
 
-M.onIdle = function(plugins)
+M.on_idle = function(plugins)
 	return modify(
 		plugins,
 		{ lazy = true, event = "VeryLazy" }
