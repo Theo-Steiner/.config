@@ -1,14 +1,20 @@
 -- bootstrap and setup utils
-local _load = require("config._lazy")
+local _load = require("packages._lazy")
+
+-- don't load packages if nvim is started for v****e extension
+if vim.g.vscode then
+	return nil
+end
+
 return require("lazy").setup({
 	-- ****************************************
 	-- *************** Packages ***************
 	-- ****************************************
 	_load.eagerly({
 		-- colorscheme
-		require("config._tokyonight"),
+		require("ui._tokyonight"),
 		-- startup screen
-		require("config._alpha"),
+		require("ui._alpha"),
 	}),
 
 	_load.on_insert_enter({
@@ -19,48 +25,48 @@ return require("lazy").setup({
 		-- add closing bracket automatically, can be stepped through with closing bracket
 		"windwp/nvim-autopairs",
 		-- lsp completions
-		require("config._cmp"),
+		require("ide._cmp"),
 	}),
 	_load.lazily({
 		-- *********** Triggered by Keys *************
 		-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
-		require("config._telescope"),
+		require("tools._telescope"),
 		-- Trouble: better quickfixlists
-		require("config._trouble"),
+		require("tools._trouble"),
 		-- file tree
-		require("config._neotree"),
+		require("ui._neotree"),
 		-- long running terminal that can easily be toggled
-		require("config._toggleterm"),
+		require("tools._toggleterm"),
 		-- *********** Triggered by CMDs *************
 		-- comment plugin by tpope.
-		require("config._commentary"),
+		require("tools._commentary"),
 	}),
 	_load.on_buf_read({
-		require("config._lsp"),
+		require("ide.lsp"),
 		-- allows non-lsp processes (prettier, eslint) to run lsp-like
-		require("config._null-ls"),
+		require("ide._null-ls"),
 		-- Git signs
 		"lewis6991/gitsigns.nvim",
 		-- Primeagen plugin to jump through files
-		require("config._harpoon"),
+		require("tools._harpoon"),
 		-- heuristically set buffer options
 		"tpope/vim-sleuth",
 		-- statusline
-		require("config._lualine"),
+		require("ui._lualine"),
 		-- make tpopes plugins dot repeatable
 		"tpope/vim-repeat",
 		-- git plugin by tpope
-		require("config._fugitive"),
+		require("tools._fugitive"),
 		-- Treesitter
-		require("config._treesitter"),
+		require("ide._treesitter"),
 		-- highlight unique letters on f press
-		require("config._eyeliner"),
+		require("ui._eyeliner"),
 		-- for surrounding selected code, mapped to shift-S
 		-- svelte specific expansions defined in _surround
-		require("config._surround"),
+		require("tools._surround"),
 	}),
 	_load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
-		require("config._noice"),
+		require("ui._noice"),
 	})
 })

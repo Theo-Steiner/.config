@@ -32,7 +32,7 @@ return {
 				eslint,
 				null_ls.builtins.code_actions.gitsigns,
 			},
-			on_attach = AUTO_FORMAT,
+			on_attach = require("ide.formatting").auto_format,
 		})
 	end
 }

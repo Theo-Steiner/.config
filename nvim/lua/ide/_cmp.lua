@@ -8,34 +8,6 @@ local feedkey = function(key, mode)
 	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
 
-local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "ﴯ",
-	Interface = "",
-	Module = "",
-	Property = "ﰠ",
-	Unit = "",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
-}
-
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
@@ -46,6 +18,7 @@ return {
 		-- Snippet Engine
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
+		"onsails/lspkind.nvim",
 	},
 	config = function()
 		local cmp = require("cmp")
@@ -55,10 +28,6 @@ return {
 					expand = function(args)
 						vim.fn["vsnip#anonymous"](args.body)
 					end,
-				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
 				},
 				mapping = cmp.mapping.preset.insert({
 					['<C-u>'] = cmp.mapping.scroll_docs(-4),
@@ -97,22 +66,14 @@ return {
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
 					{ name = 'vsnip' },
+					{ name = 'buffer' },
+					{ name = 'path' },
+					{ name = 'nvim_lua' },
+				}),
+				formatting = {
+					format = require('lspkind').cmp_format({}),
 				},
-					{
-						{ name = 'buffer' },
-					}),
-				view = { entries = "native" },
-				-- formatting = {
-				-- format = function(_, vim_item)
-				-- vim_item.kind = kind_icons[vim_item.kind] .. " " .. vim_item.kind .. " "
-				-- return vim_item
-				-- end,
-				-- },
 				completion = {
-					-- TODO
-					-- "hrsh7th/cmp-buffer",
-					-- "hrsh7th/cmp-path",
-					-- "hrsh7th/cmp-nvim-lua",
 					get_trigger_characters = function(trigger_characters)
 						local new_trigger_characters = {}
 						for _, char in ipairs(trigger_characters) do

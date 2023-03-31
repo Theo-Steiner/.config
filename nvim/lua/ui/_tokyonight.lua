@@ -8,21 +8,17 @@ return {
 				styles = { sidebars = "transparent" },
 				dim_inactive = true,
 				on_colors = function(colors)
-					colors.border = "#8be9fd"
+					colors.border = "NONE"
 					colors.diff.delete = "#ff0000"
-					colors.bg_highlight = "NONE"
+					colors.none = "NONE"
+					colors.bg_highlight = colors.none
 				end,
 				on_highlights = function(hl, c)
-					hl.NormalFloat = {
-						fg = c.fg_dark,
-						bg = c.bg_highlight,
-					}
 					hl.FloatBorder = {
-						fg = c.border,
-						bg = c.bg_highlight,
+						fg = c.none,
+						bg = c.none,
 					}
 					hl.CursorLine = {
-						color = hl.CursorLine.color,
 						bold = true
 					}
 				end

@@ -1,6 +1,7 @@
 -- ****************************************
 -- ************** Formatting **************
 -- ****************************************
+local M = {}
 
 -- add global to track if auto formatting is enabled
 vim.g.AutoFormattingEnabled = true
@@ -29,7 +30,7 @@ vim.api.nvim_create_user_command("Format", function() format() end, {})
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 -- attach this handler as on_attach callback to enable lsp autoformatting
-AUTO_FORMAT = function(client, bufnr)
+M.auto_format = function(client, bufnr)
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
@@ -43,3 +44,5 @@ AUTO_FORMAT = function(client, bufnr)
 		})
 	end
 end
+
+return M

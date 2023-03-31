@@ -2,6 +2,11 @@
 -- ********** BASIC VIM SETTINGS **********
 -- ****************************************
 
+-- Set globals used throughout the config files
+Set = vim.opt
+-- Set space as leader
+vim.g.mapleader = " "
+
 -- because languages
 Set.encoding = "UTF-8"
 
@@ -44,7 +49,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 
 -- paste over selected content no longer replaces clipboard
 -- && set clipboard to mac/windows system clipboard
-Map("v", "p", '"_dP')
+vim.keymap.set("v", "p", '"_dP')
 Set.cb = "unnamed"
 
 -- hides 'No write since last change (add ! to override)' error
@@ -73,9 +78,9 @@ vim.fn.sign_define(
 vim.diagnostic.config({
 	virtual_text = false,
 	float = {
-		header = "",
+		header = '',
 		source = 'if_many',
-		border = 'rounded',
+		border = nil,
 	},
 })
-Map('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
