@@ -11,34 +11,27 @@ return {
 		require("neoconf").setup({})
 		require("neodev").setup({})
 		require("mason").setup()
-		-- a list of default servers
-		local default_servers = {
-			'html',
-			'cssls',
-			'tsserver',
-			'svelte',
-			'lua_ls',
-			'volar',
-			'jsonls',
-			'emmet_ls',
-		}
+		local server_settings = require("ide.lsp.servers")
 
 		require('mason-lspconfig').setup({
-			ensure_installed = default_servers
+			ensure_installed = server_settings.default_servers
 		})
 		local lspconfig = require('lspconfig')
 
-		local settings = require("ide.lsp.server_settings")
+		server_settings.setup()
 
 		require('mason-lspconfig').setup_handlers({
 			function(server_name)
-				if settings.client_disabled(server_name) then
+				if server_settings.is_disabled(server_name) then
 					return
 				end
 				lspconfig[server_name].setup(
-					settings.get_config(server_name)
+					server_settings.get_config(server_name)
 				)
 			end,
 		})
+
+		-- setup diagnostics
+		require("ide.lsp.diagnostics").setup()
 	end,
 }
