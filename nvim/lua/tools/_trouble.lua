@@ -22,7 +22,7 @@ local next_diagnostic_or_trouble = function(forwards)
 	if forwards then
 		vim.diagnostic.goto_next()
 	else
-		vim.diagnostic.goto_prev()
+		vim.diagnostic.goto_prev({})
 	end
 end
 
