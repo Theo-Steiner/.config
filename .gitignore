@@ -7,5 +7,5 @@ fish/functions
 !git
 !nvim
 !fish
-!kitty
+!wezterm
 !starship.toml
