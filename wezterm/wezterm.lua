@@ -3,13 +3,13 @@ local config = {}
 
 -- don't display ugly bar at the top
 config.window_decorations = "RESIZE"
-config.window_background_opacity = .7
+config.window_background_opacity = .8
 config.macos_window_background_blur = 20
 config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
+	left = 5,
+	right = 5,
+	top = 5,
+	bottom = 5,
 }
 -- use thin tabs
 config.use_fancy_tab_bar = false

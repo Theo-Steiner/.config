@@ -8,6 +8,8 @@ return {
 				styles = { sidebars = "transparent" },
 				dim_inactive = true,
 				on_colors = function(colors)
+					colors.comment = "#848cb1"
+					colors.fg_gutter = "#56608d"
 					colors.border = "NONE"
 					colors.diff.delete = "#ff0000"
 					colors.none = "NONE"
