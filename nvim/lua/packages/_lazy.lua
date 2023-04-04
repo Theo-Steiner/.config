@@ -38,23 +38,24 @@ local modify = function(plugins, config)
 	return plugins
 end
 
-M.onBufferLoad = function(plugins)
+M.on_buf_read = function(plugins)
 	return modify(
 		plugins,
-		{ lazy = true,
+		{
+			lazy = true,
 			event = { "BufReadPre", "BufNewFile" },
 		}
 	)
 end
 
-M.onInsertEnter = function(plugins)
+M.on_insert_enter = function(plugins)
 	return modify(
 		plugins,
 		{ lazy = true, event = "InsertEnter" }
 	)
 end
 
-M.onIdle = function(plugins)
+M.on_idle = function(plugins)
 	return modify(
 		plugins,
 		{ lazy = true, event = "VeryLazy" }
@@ -69,7 +70,8 @@ end
 
 M.lazily = function(plugins)
 	return modify(
-		plugins,
+	-- make table, so config=true doesn't won't be set
+		{ plugins },
 		{ lazy = true }
 	)
 end

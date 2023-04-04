@@ -3,26 +3,25 @@ return {
 	dependencies = {
 		"nvim-lua/popup.nvim",
 		"MunifTanjim/nui.nvim",
-		"VonHeikemen/lsp-zero.nvim",
+	},
+	keys = {
+		{ ':' }
 	},
 	config = function()
 		require("noice").setup({
 			lsp = {
-				-- override markdown rendering so that **cmp**
-				-- and other plugins use **Treesitter**
 				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
+					["vim.lsp.util.convert_input_to_markdown_lines"] = false,
+					["vim.lsp.util.stylize_markdown"] = false,
+					["cmp.entry.get_documentation"] = false,
 				},
 			},
 			views = {
 				hover = {
-					position = {
-						row = 2,
-						col = 0
-					},
-					border = { style = "rounded" }
+					relative = "cursor",
+				},
+				documentation = {
+					view = "mini"
 				},
 				mini = {
 					border = {
