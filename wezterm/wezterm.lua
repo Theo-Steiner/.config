@@ -11,8 +11,6 @@ config.window_padding = {
 	top = 5,
 	bottom = 5,
 }
--- use thin tabs
-config.use_fancy_tab_bar = false
 
 config.font = wezterm.font('FiraCode Nerd Font Mono')
 
@@ -22,6 +20,23 @@ config.window_background_gradient = {
 	colors = { '#1a1b26', '#414868' },
 	-- Specifices a Linear gradient starting in the top left corner.
 	orientation = { Linear = { angle = -45.0 } },
+}
+config.colors = {
+	tab_bar = {
+		active_tab = {
+			bg_color = '#414868',
+			fg_color = '#fefefe',
+		},
+		inactive_tab = {
+			bg_color = '#1a1b26',
+			fg_color = '#808080',
+		},
+		new_tab = {
+			bg_color = '#1a1b26',
+			fg_color = '#fefefe',
+		},
+		inactive_tab_edge = '#1a1b26',
+	},
 }
 
 return config
