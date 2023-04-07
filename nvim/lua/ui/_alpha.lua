@@ -59,6 +59,7 @@ return {
 			val = {
 				{ type = "text", val = "Actions", opts = { hl = "SpecialComment", position = "center" } },
 				{ type = "padding", val = 1 },
+				dashboard.button("r", "֎  Last Session", "<cmd>lua require('persistence').load({ last = true })<cr>"),
 				dashboard.button("l", "  Lazy.nvim", "<cmd>Lazy<CR>"),
 				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
 			},

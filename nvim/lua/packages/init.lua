@@ -1,11 +1,6 @@
 -- bootstrap and setup utils
 local _load = require("packages._lazy")
 
--- don't load packages if nvim is started for v****e extension
-if vim.g.vscode then
-	return nil
-end
-
 return require("lazy").setup({
 	-- ****************************************
 	-- *************** Packages ***************
@@ -68,5 +63,6 @@ return require("lazy").setup({
 	_load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
 		require("ui._noice"),
+		'folke/persistence.nvim',
 	})
 })
