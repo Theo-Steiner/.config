@@ -11,6 +11,12 @@ config.window_padding = {
 	top = 5,
 	bottom = 5,
 }
+config.window_frame = {
+	font = wezterm.font { family = 'Roboto', weight = 'Bold' },
+	font_size = 16,
+	active_titlebar_bg = '#1a1b26',
+}
+
 config.keys = {
 	{
 		key = 'i',
