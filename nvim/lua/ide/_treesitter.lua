@@ -12,6 +12,7 @@ return {
 			sync_install = false,
 			highlight = {
 				enable = true,
+				disable = function(_, bufnr) return require("utils").is_huge_file(bufnr) end,
 				additional_vim_regex_highlighting = false,
 			},
 			indent = {
@@ -20,7 +21,7 @@ return {
 			},
 			context_commentstring = {
 				enable = true
-			}
+			},
 		})
 	end,
 }
