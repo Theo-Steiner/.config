@@ -63,6 +63,7 @@ return require("lazy").setup({
 	_load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
 		require("ui._noice"),
+		-- Session manager. Last session can be restored from alpha.nvim
 		'folke/persistence.nvim',
 	})
 })
