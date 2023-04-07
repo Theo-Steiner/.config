@@ -40,6 +40,9 @@ vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
 	end,
 })
 -- Load folds on buf-enter
+-- Warning: if you change the working directory with :lcd,
+-- this working directory will be loaded with the view going forward
+-- https://stackoverflow.com/questions/63531642
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
 	pattern = { "*.*" },
 	callback = function()
