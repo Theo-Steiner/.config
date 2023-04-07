@@ -43,7 +43,6 @@ return {
 			},
 			git_status_async = true,
 			filesystem = {
-				hijack_netrw_behavior = "open_current",
 				filtered_items = {
 					hide_by_name = {
 						".DS_Store",
