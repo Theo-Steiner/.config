@@ -33,17 +33,16 @@ M.setup = function()
 	local lsp_attach = function(client, bufnr)
 		-- add aucmd for auto formatting
 		auto_format(client, bufnr)
-		-- Create your keybindings here...
-		local surround = function(cmd)
+
+		-- helper
+		local surround_helper = function(cmd)
 			return string.format('<cmd>lua vim.lsp.%s<cr>', cmd)
 		end
-
-
-		vim.keymap.set('n', 'K', surround('buf.hover()'))
-		vim.keymap.set('n', 'gD', surround('buf.declaration()'))
-		vim.keymap.set('n', 'gi', surround('buf.implementation()'))
-		vim.keymap.set('n', 's', surround('buf.rename()'))
-		vim.keymap.set('n', 'ga', surround('buf.code_action()'))
+		vim.keymap.set('n', 'K', surround_helper('buf.hover()'))
+		vim.keymap.set('n', 'gD', surround_helper('buf.declaration()'))
+		vim.keymap.set('n', 'gi', surround_helper('buf.implementation()'))
+		vim.keymap.set('n', 's', surround_helper('buf.rename()'))
+		vim.keymap.set('n', 'ga', surround_helper('buf.code_action()'))
 	end
 
 	M.get_config = function(server_name)
