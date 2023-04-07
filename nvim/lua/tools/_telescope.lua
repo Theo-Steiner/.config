@@ -4,15 +4,22 @@ return {
 	},
 	keys = {
 		-- use <leader> ff to open fuzzy finder preview to find file in project
-		{ "<leader>ff", function()
-			require('telescope').extensions.togglescope.find_files()
-		end, silent = true },
+		{
+			"<leader>ff",
+			function()
+				require('telescope').extensions.togglescope.find_files()
+			end,
+			silent = true
+		},
 		-- use <leader> fg to open fuzzy finder preview to live-grep in project
-		{ "<leader>fg",
+		{
+			"<leader>fg",
 			function()
 				require('telescope').extensions.togglescope.live_grep()
 			end
-			, silent = true },
+			,
+			silent = true
+		},
 		-- use <leader> fc to search for merge conflicts
 		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
 	},
@@ -49,7 +56,10 @@ return {
 					" ",
 				},
 				mappings = {
-					i = { ["<c-t>"] = trouble.open_with_trouble },
+					i = {
+						["<c-t>"] = trouble.open_with_trouble,
+						["<c-f>"] = require("telescope.actions").to_fuzzy_refine
+					},
 					n = {
 						["<c-t>"] = trouble.open_with_trouble,
 						["q"] = require("telescope.actions").close,
