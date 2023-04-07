@@ -11,6 +11,13 @@ config.window_padding = {
 	top = 5,
 	bottom = 5,
 }
+config.keys = {
+	{
+		key = 'i',
+		mods = 'CMD|ALT',
+		action = wezterm.action.ActivateCopyMode,
+	},
+}
 
 config.font = wezterm.font('FiraCode Nerd Font Mono')
 
