@@ -1,22 +1,30 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
-		"nvim-telescope/telescope-live-grep-args.nvim" },
+	},
 	keys = {
 		-- use <leader> ff to open fuzzy finder preview to find file in project
-		{ "<leader>ff", "<cmd>Telescope find_files<cr>",                                            silent = true },
+		{ "<leader>ff", function()
+			require('telescope').extensions.togglescope.find_files()
+		end, silent = true },
 		-- use <leader> fg to open fuzzy finder preview to live-grep in project
-		{ "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", silent = true },
+		{ "<leader>fg",
+			function()
+				require('telescope').extensions.togglescope.live_grep()
+			end
+			, silent = true },
 		-- use <leader> fc to search for merge conflicts
-		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>",                            silent = true },
+		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
 	},
 	config = function()
 		local telescope = require("telescope")
 		local trouble = require("trouble.providers.telescope")
+		telescope.load_extension("togglescope")
 		local config = {
 			defaults = {
 				sorting_strategy = "ascending",
 				layout_strategy = "horizontal",
+				file_ignore_patterns = { "^.git/" },
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
@@ -49,7 +57,6 @@ return {
 				},
 			},
 		}
-
 		telescope.setup(config)
 	end,
 }
