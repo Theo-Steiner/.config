@@ -1,6 +1,11 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+		{
+			"Theo-Steiner/togglescope",
+			-- uncomment to use from ~projects/togglescope
+			-- dev = true
+		}
 	},
 	keys = {
 		-- use <leader> ff to open fuzzy finder preview to find file in project
@@ -26,12 +31,37 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local trouble = require("trouble.providers.telescope")
-		telescope.load_extension("togglescope")
 		local config = {
+			extensions = {
+				togglescope = {
+					find_files = { ['<C-^>'] = { no_ignore = true, hidden = true, togglescope_title = "Find Files (hidden)" } },
+					live_grep = {
+						['<C-^>'] = {
+							additional_args = {
+								'--no-ignore',
+								'--hidden',
+								"-g",
+								"!package-lock.json",
+							},
+							togglescope_title = "Live Grep (hidden)"
+						}
+					}
+				}
+			},
 			defaults = {
+				file_ignore_patterns = { "^.git/" },
+				mappings = {
+					i = {
+						["<c-t>"] = trouble.open_with_trouble,
+						["<c-f>"] = require("telescope.actions").to_fuzzy_refine
+					},
+					n = {
+						["<c-t>"] = trouble.open_with_trouble,
+						["q"] = require("telescope.actions").close,
+					},
+				},
 				sorting_strategy = "ascending",
 				layout_strategy = "horizontal",
-				file_ignore_patterns = { "^.git/" },
 				layout_config = {
 					horizontal = {
 						prompt_position = "top",
@@ -45,26 +75,7 @@ return {
 					height = 0.80,
 					preview_cutoff = 120,
 				},
-				borderchars = {
-					" ",
-					" ",
-					" ",
-					" ",
-					" ",
-					" ",
-					" ",
-					" ",
-				},
-				mappings = {
-					i = {
-						["<c-t>"] = trouble.open_with_trouble,
-						["<c-f>"] = require("telescope.actions").to_fuzzy_refine
-					},
-					n = {
-						["<c-t>"] = trouble.open_with_trouble,
-						["q"] = require("telescope.actions").close,
-					},
-				},
+				borderchars = { " ", " ", " ", " ", " ", " ", " ", " ", },
 			},
 		}
 		telescope.setup(config)
