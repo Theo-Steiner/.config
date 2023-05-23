@@ -13,7 +13,6 @@ return {
 					colors.border = "NONE"
 					colors.diff.delete = "#ff0000"
 					colors.none = "NONE"
-					colors.bg_highlight = colors.none
 				end,
 				on_highlights = function(hl, c)
 					hl.FloatBorder = {
