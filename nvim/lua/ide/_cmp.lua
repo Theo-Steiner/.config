@@ -15,6 +15,7 @@ return {
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-nvim-lua",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 		-- Snippet Engine
 		"hrsh7th/cmp-vsnip",
 		"hrsh7th/vim-vsnip",
@@ -69,6 +70,7 @@ return {
 					{ name = 'buffer' },
 					{ name = 'path' },
 					{ name = 'nvim_lua' },
+					{ name = 'nvim_lsp_signature-help' },
 				}),
 				formatting = {
 					format = require('lspkind').cmp_format({}),
