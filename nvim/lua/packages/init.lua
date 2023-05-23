@@ -41,7 +41,7 @@ return require("lazy").setup({
 		-- allows non-lsp processes (prettier, eslint) to run lsp-like
 		require("ide._null-ls"),
 		-- Git signs
-		"lewis6991/gitsigns.nvim",
+		require("ide._gitsigns"),
 		-- Primeagen plugin to jump through files
 		require("tools._harpoon"),
 		-- heuristically set buffer options
