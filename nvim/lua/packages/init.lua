@@ -11,7 +11,6 @@ return require("lazy").setup({
 		-- startup screen
 		require("ui._alpha"),
 	}),
-
 	_load.on_insert_enter({
 		-- show colors next to color values
 		"norcalli/nvim-colorizer.lua",
@@ -32,6 +31,9 @@ return require("lazy").setup({
 		require("ui._neotree"),
 		-- long running terminal that can easily be toggled
 		require("tools._toggleterm"),
+		-- plugins and setting to enable debugging
+		-- <leader>b to set a breakpoint and <leader>c to continue a debug session
+		require("ide.lsp.debugging"),
 		-- *********** Triggered by CMDs *************
 		-- comment plugin by tpope.
 		require("tools._commentary"),
