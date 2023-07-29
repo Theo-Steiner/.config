@@ -29,6 +29,7 @@ return require("lazy").setup({
 		require("tools._trouble"),
 		-- file tree
 		require("ui._neotree"),
+		require("ui._neotree_file_operations"),
 		-- long running terminal that can easily be toggled
 		require("tools._toggleterm"),
 		-- plugins and setting to enable debugging
