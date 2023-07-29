@@ -6,6 +6,7 @@ return {
 		"folke/neoconf.nvim",
 		'folke/neodev.nvim',
 		'hrsh7th/cmp-nvim-lsp',
+		"pmizio/typescript-tools.nvim",
 	},
 	config = function()
 		require("neoconf").setup({})
@@ -30,6 +31,14 @@ return {
 				)
 			end,
 		})
+
+		-- since we're using typescript-tools.nvim instead of the plain tsserver
+		-- it can't be installed by mason and thus needs special handling
+		if not server_settings.is_disabled("tsserver") then
+			require("typescript-tools").setup(
+				server_settings.get_config("tsserver")
+			)
+		end
 
 		-- setup diagnostics
 		require("ide.lsp.diagnostics").setup()
