@@ -4,7 +4,7 @@ local M = {}
 M.default_servers = {
 	'html',
 	'cssls',
-	'tsserver',
+	-- 'tsserver' is installed via "pmizio/typescript-tools.nvim"
 	'svelte',
 	'lua_ls',
 	'volar',
@@ -16,7 +16,8 @@ local server_settings = {
 	emmet_ls = require("ide.lsp.servers.emmet_ls"),
 	volar = require("ide.lsp.servers.volar"),
 	lua_ls = require("ide.lsp.servers.lua_lsp"),
-	jsonls = require("ide.lsp.servers.jsonls")
+	jsonls = require("ide.lsp.servers.jsonls"),
+	tsserver = require("ide.lsp.servers.tsserver")
 }
 
 -- easily disable lsps in .neoconf.json like this
@@ -27,6 +28,18 @@ M.is_disabled = function(client)
 	require("neoconf").get(client .. ".disable")
 end
 
+local get_server_settings = function(server_name)
+	-- don't add ts to volar filetypes if tsserver is not explicitly disabled
+	if server_name == 'volar' then
+		if not M.is_disabled('tsserver') then
+			return {}
+		end
+	end
+	-- return standard server settings in all other cases
+	return server_settings[server_name] or {}
+end
+
+-- server_settings.setup()
 M.setup = function()
 	local default_capabilities = require('cmp_nvim_lsp').default_capabilities()
 	local auto_format = require("ide.formatting").auto_format
@@ -48,7 +61,7 @@ M.setup = function()
 	M.get_config = function(server_name)
 		return vim.tbl_extend(
 			"keep",
-			server_settings[server_name] or {},
+			get_server_settings(server_name),
 			{
 				on_attach = lsp_attach,
 				capabilities = default_capabilities
