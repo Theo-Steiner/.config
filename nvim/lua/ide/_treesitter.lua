@@ -6,6 +6,8 @@ return {
 	config = function()
 		vim.cmd([[autocmd BufRead,BufEnter *.astro set filetype=astro]])
 		require("nvim-treesitter.configs").setup({
+			modules = {},
+			auto_install = true,
 			ensure_installed = "all",
 			-- disable because they throw errors I don't understand
 			ignore_install = { "phpdoc", "markdown_inline", "cpp" },
