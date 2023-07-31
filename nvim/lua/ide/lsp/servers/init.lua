@@ -25,7 +25,7 @@ local server_settings = {
 -- "tsserver": { "disable": true }
 -- }
 M.is_disabled = function(client)
-	require("neoconf").get(client .. ".disable")
+	return require("neoconf").get(client .. ".disable")
 end
 
 local get_server_settings = function(server_name)
