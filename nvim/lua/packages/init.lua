@@ -45,8 +45,6 @@ return require("lazy").setup({
 		require("ide._null-ls"),
 		-- Git signs
 		require("ide._gitsigns"),
-		-- Primeagen plugin to jump through files
-		require("tools._harpoon"),
 		-- heuristically set buffer options
 		"tpope/vim-sleuth",
 		-- statusline

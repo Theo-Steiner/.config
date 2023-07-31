@@ -4,13 +4,17 @@ Set.laststatus = 0
 -- hijack when opening a directory
 vim.cmd [[
     autocmd StdinReadPre * let s:std_in=1
-    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) |
         \ execute 'cd '.argv()[0] | execute 'lua require("alpha").start()' | endif
     ]]
 
 return {
 	'goolord/alpha-nvim',
 	event = 'VimEnter',
+	keys = {
+		-- open alpha (but close neotree first to prevent issues)
+		{ "<leader>a", ":Neotree close<cr>:Alpha<cr>", silent = true }
+	},
 	config = function()
 		local mru = require("alpha.themes.theta").mru
 		local dashboard = require("alpha.themes.dashboard")
@@ -57,9 +61,17 @@ return {
 		local buttons = {
 			type = "group",
 			val = {
-				{ type = "text", val = "Actions", opts = { hl = "SpecialComment", position = "center" } },
+				{
+					type = "text",
+					val = "Actions",
+					opts = {
+						hl = "SpecialComment",
+						position = "center"
+					}
+				},
 				{ type = "padding", val = 1 },
-				dashboard.button("r", "֎  Last Session", "<cmd>lua require('persistence').load({ last = true })<cr>"),
+				dashboard.button("r", "֎  Last Session",
+					"<cmd>lua require('persistence').load({ last = true })<cr>"),
 				dashboard.button("l", "  Lazy.nvim", "<cmd>Lazy<CR>"),
 				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
 			},
