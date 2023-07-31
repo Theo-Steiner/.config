@@ -6,6 +6,8 @@
 Set = vim.opt
 -- Set space as leader
 vim.g.mapleader = " "
+-- remove non-leader mappings from space
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 
 -- because languages
 Set.encoding = "UTF-8"

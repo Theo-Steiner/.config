@@ -1,3 +1,16 @@
+local getVisualSelection = function()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
@@ -12,18 +25,20 @@ return {
 		{
 			"<leader>ff",
 			function()
-				require('telescope').extensions.togglescope.find_files()
+				require('telescope').extensions.togglescope.find_files({ default_text = getVisualSelection() })
 			end,
-			silent = true
+			silent = true,
+			mode = { "n", "v" }
 		},
 		-- use <leader> fg to open fuzzy finder preview to live-grep in project
 		{
 			"<leader>fg",
 			function()
-				require('telescope').extensions.togglescope.live_grep()
+				require('telescope').extensions.togglescope.live_grep({ default_text = getVisualSelection() })
 			end
 			,
-			silent = true
+			silent = true,
+			mode = { "n", "v" }
 		},
 		-- use <leader> fc to search for merge conflicts
 		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
