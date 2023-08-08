@@ -34,6 +34,7 @@
   "persistence.nvim": { "branch": "main", "commit": "4b8051c01f696d8849a5cb8afa9767be8db16e40" },
   "plenary.nvim": { "branch": "master", "commit": "267282a9ce242bbb0c5dc31445b6d353bed978bb" },
   "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
+  "telescope-repo.nvim": { "branch": "master", "commit": "d069994f0571366ca2a80f0fb464bb80fd63569d" },
   "telescope.nvim": { "branch": "master", "commit": "b6fccfb0f7589a87587875206786daccba62acc3" },
   "togglescope": { "branch": "main", "commit": "56f422e46f504ab278d433fff8eff21cd9a91b92" },
   "toggleterm.nvim": { "branch": "main", "commit": "00c13dccc78c09fa5da4c5edda990a363e75035e" },
