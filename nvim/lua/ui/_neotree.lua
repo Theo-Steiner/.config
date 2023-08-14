@@ -9,7 +9,7 @@ return {
 		-- open file tree witvh <leader> p
 		{ "<leader>pv", ":Neotree reveal toggle<cr>", silent = true }
 	},
-	branch = "v2.x",
+	branch = "v3.x",
 	config = function()
 		-- Unless you are still migrating, remove the deprecated commands from v1.x
 		vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -29,7 +29,7 @@ return {
 		)
 		vim.fn.sign_define(
 			"DiagnosticSignHint",
-			{ text = "", texthl = "DiagnosticSignHint" }
+			{ text = "󰌵", texthl = "DiagnosticSignHint" }
 		)
 
 		require("neo-tree").setup({
