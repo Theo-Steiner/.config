@@ -24,10 +24,13 @@ config.keys = {
 	},
 }
 
--- config.font = wezterm.font("FiraCode Nerd Font Mono")
 config.font = wezterm.font_with_fallback({
+	-- Main font
 	"Fira Code",
+	-- Fallback to Nerd Font symbols if glyph is not available
 	"Symbols Nerd Font",
+	-- Fallback to JetBrains Mono if glyph still not available (for example: (⇡)[\u21E1])
+	"JetBrains Mono",
 })
 config.font_size = 18
 
