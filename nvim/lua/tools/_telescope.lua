@@ -69,6 +69,9 @@ return {
 					}
 				},
 				repo = {
+					settings = {
+						auto_lcd = false,
+					},
 					list = {
 						search_dirs = {
 							"~/dev",
