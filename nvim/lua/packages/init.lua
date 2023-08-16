@@ -30,8 +30,6 @@ return require("lazy").setup({
 		-- file tree
 		require("ui._neotree"),
 		require("ui._neotree_file_operations"),
-		-- long running terminal that can easily be toggled
-		require("tools._toggleterm"),
 		-- plugins and setting to enable debugging
 		-- <leader>b to set a breakpoint and <leader>c to continue a debug session
 		require("ide.lsp.debugging"),
