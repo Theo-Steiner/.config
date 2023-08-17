@@ -8,6 +8,7 @@ vim.cmd [[
         \ execute 'cd '.argv()[0] | execute 'lua require("alpha").start()' | endif
     ]]
 
+
 return {
 	'goolord/alpha-nvim',
 	event = 'VimEnter',
@@ -16,18 +17,24 @@ return {
 		{ "<leader>a", ":Neotree close<cr>:Alpha<cr>", silent = true }
 	},
 	config = function()
+		local theovim_textart = {
+			[[  __     __                              __]],
+			[[ /\ \__ /\ \___     ___    ___   __  __ /\_\    ___ ___]],
+			[[/\`_  _\\ \  _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
+			[[\/_/\ \/ \ \ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
+			[[   \ \_\  \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
+			[[    \/_/   \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+			[[                                                           ]],
+			('      just booted in %.2fms, can your editor do that?      '):format(
+				require("lazy").stats().times
+				['LazyDone']
+			),
+		}
 		local mru = require("alpha.themes.theta").mru
 		local dashboard = require("alpha.themes.dashboard")
 		local header = {
 			type = "text",
-			val = {
-				[[                                  __]],
-				[[     ___     ___    ___   __  __ /\_\    ___ ___]],
-				[[    / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\]],
-				[[   /\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \]],
-				[[   \ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-				[[    \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
-			},
+			val = theovim_textart,
 			opts = {
 				position = "center",
 				hl = "Type",
@@ -70,10 +77,8 @@ return {
 					}
 				},
 				{ type = "padding", val = 1 },
-				dashboard.button("r", "֎  Last Session",
-					"<cmd>lua require('persistence').load({ last = true })<cr>"),
 				dashboard.button("l", "  Lazy.nvim", "<cmd>Lazy<CR>"),
-				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
+				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
 			},
 			position = "center",
 		}
