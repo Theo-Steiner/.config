@@ -2,7 +2,6 @@
 /*
 # ignore in unignored subdirs
 nvim/plugin
-fish/functions
 # unignore
 !git
 !nvim
