@@ -24,12 +24,11 @@ wezterm.on('toggle-pane', function(current_window, current_pane)
 	end
 	-- if the current pane is the top pane (current id is lower than alternate_id)
 	if current_pane_id < alternate_pane_id then
-		-- deactivate fullscreen for top pane (current pane)
+		-- toggle fullscreen for top pane (if alternate pane is hidden, show it)
 		current_window:perform_action(
-			wezterm.action.SetPaneZoomState(false),
+			wezterm.action.TogglePaneZoomState,
 			current_pane
 		)
-		-- then switch to bottom pane
 		alternate_pane:activate()
 	else
 		-- if the current pane is the bottom pane (current id is lower than alternate_id)
@@ -63,6 +62,11 @@ return {
 		-- Specifices a Linear gradient starting in the top left corner.
 		orientation = { Linear = { angle = -45.0 } },
 	},
+	unzoom_on_switch_pane = false,
+	inactive_pane_hsb = {
+		saturation = 1,
+		brightness = .3,
+	},
 	keys = {
 		-- bind wezterm copy mode to inspector hotkey
 		{
@@ -75,6 +79,12 @@ return {
 			key = 'l',
 			mods = 'CMD',
 			action = wezterm.action.EmitEvent('toggle-pane'),
+		},
+		-- show or hide custom split pane toggle with cmd + l
+		{
+			key = 'k',
+			mods = 'CMD',
+			action = wezterm.action.ActivatePaneDirection('Next'),
 		},
 	},
 	font = wezterm.font_with_fallback({
