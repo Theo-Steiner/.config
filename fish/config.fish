@@ -23,7 +23,7 @@ function vi
 end
 
 function vic
-  cd ~/.config/nvim && vi init.lua
+  cd ~/.config && vi
 end
 
 function fish_greeting
