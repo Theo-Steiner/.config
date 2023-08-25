@@ -1,44 +1,83 @@
 local wezterm = require('wezterm')
+local io = require('io')
+local os = require('os')
 
-wezterm.on('toggle-pane', function(current_window, current_pane)
-	local current_pane_id = current_pane:pane_id()
+
+--- creates a second pane if there is only one pane in the current tab
+---@param current_window any
+---@param current_pane any
+---@return boolean did_create whether or not it did create a new pane
+local create_second_pane = function(current_window, current_pane)
 	local current_tab = current_window:active_tab()
 	local current_tab_pane_ids = current_tab:panes()
-	-- if current pane is the only pane in the tab, open a horizontal split pane (for npm run dev etc)
+	-- if current pane is the only pane in the tab, create a new horizontal split pane
 	if #current_tab_pane_ids == 1 then
 		current_window:perform_action(
 			wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }),
 			current_pane
 		)
-		return
+		return true
 	end
+	return false
+end
+
+wezterm.on('vim-mode', function(current_window, current_pane)
+	-- retrieve the last 300 lines of terminal output
+	local viewport_text = current_pane:get_lines_as_text(300)
+
+	-- create a temporary file to pass to vim
+	local tmpfile = os.tmpname()
+	local f, err = io.open(tmpfile, 'w+')
+	if f == nil then
+		print(err)
+	else
+		f:write(viewport_text)
+		f:flush()
+		f:close()
+	end
+
+	-- Open a new window running vim and tell it to open the file
+	current_window:perform_action(
+		wezterm.action.SpawnCommandInNewWindow {
+			args = {
+				-- path to executable
+				'/opt/homebrew/bin/nvim',
+				-- temporary file name
+				tmpfile,
+				-- set cursor to last line
+				'+',
+				-- set filetype to sh for some best effor highlighting
+				'+set filetype=sh'
+			},
+		},
+		current_pane
+	)
+
+	-- remove tmpfile after giving nvim time to read it
+	wezterm.sleep_ms(1000)
+	os.remove(tmpfile)
+end)
+
+--- switch to the alternate pane of the current tab
+wezterm.on('alternate-pane', function(current_window, current_pane)
+	create_second_pane(current_window, current_pane)
 	-- if two panes exist already, get the alternate pane (currently *not* selected pane)
-	local alternate_pane = nil
-	local alternate_pane_id = nil
-	for _, open_pane in ipairs(current_tab_pane_ids) do
-		local open_pane_id = open_pane:pane_id()
-		if open_pane_id ~= current_pane_id then
-			alternate_pane = open_pane
-			alternate_pane_id = open_pane_id
-		end
-	end
-	-- if the current pane is the top pane (current id is lower than alternate_id)
-	if current_pane_id < alternate_pane_id then
-		-- toggle fullscreen for top pane (if alternate pane is hidden, show it)
+	current_window:perform_action(
+		wezterm.action.ActivatePaneDirection('Next'),
+		current_pane
+	)
+end)
+
+--- toggle zoom of the current pane to reveal the alternate-pane
+wezterm.on('alternate-zoom', function(current_window, current_pane)
+	if not create_second_pane(current_window, current_pane) then
+		-- if two panes exist already, get the alternate pane (currently *not* selected pane)
 		current_window:perform_action(
 			wezterm.action.TogglePaneZoomState,
 			current_pane
 		)
-		alternate_pane:activate()
 	else
-		-- if the current pane is the bottom pane (current id is lower than alternate_id)
-		-- switch to top pane
-		alternate_pane:activate()
-		-- and make top pane fullscreen
-		current_window:perform_action(
-			wezterm.action.SetPaneZoomState(true),
-			current_pane
-		)
+		current_pane:activate()
 	end
 end)
 
@@ -62,7 +101,6 @@ return {
 		-- Specifices a Linear gradient starting in the top left corner.
 		orientation = { Linear = { angle = -45.0 } },
 	},
-	unzoom_on_switch_pane = false,
 	inactive_pane_hsb = {
 		saturation = 1,
 		brightness = .3,
@@ -72,20 +110,26 @@ return {
 		{
 			key = 'i',
 			mods = 'CMD|ALT',
-			action = wezterm.action.ActivateCopyMode,
+			action = wezterm.action.EmitEvent('vim-mode'),
 		},
-		-- trigger custom split pane toggle with cmd + l
-		{
-			key = 'l',
-			mods = 'CMD',
-			action = wezterm.action.EmitEvent('toggle-pane'),
-		},
-		-- show or hide custom split pane toggle with cmd + l
+		-- go to alternate pane
 		{
 			key = 'k',
 			mods = 'CMD',
-			action = wezterm.action.ActivatePaneDirection('Next'),
+			action = wezterm.action.EmitEvent('alternate-pane'),
 		},
+		-- show or hide alternate pane with cmd + l
+		{
+			key = 'l',
+			mods = 'CMD',
+			action = wezterm.action.EmitEvent('alternate-zoom'),
+		},
+	},
+	key_tables = {
+		copy_mode = {
+			{ key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode('MoveUp') },
+			{ key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode('MoveDown') },
+		}
 	},
 	font = wezterm.font_with_fallback({
 		-- Main font

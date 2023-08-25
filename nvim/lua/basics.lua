@@ -26,6 +26,9 @@ vim.g.loaded_netrw = 1
 Set.scrolloff = 8
 Set.sidescrolloff = 5
 
+-- disable line wrap
+Set.wrap = false
+
 -- activate linenumbers
 Set.number = true
 
