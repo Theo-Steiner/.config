@@ -118,9 +118,9 @@ return {
 			mods = 'CMD',
 			action = wezterm.action.EmitEvent('alternate-pane'),
 		},
-		-- show or hide alternate pane with cmd + l
+		-- show or hide alternate pane with cmd + h
 		{
-			key = 'l',
+			key = 'h',
 			mods = 'CMD',
 			action = wezterm.action.EmitEvent('alternate-zoom'),
 		},
