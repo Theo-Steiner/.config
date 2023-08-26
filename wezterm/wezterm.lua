@@ -125,12 +125,6 @@ return {
 			action = wezterm.action.EmitEvent('alternate-zoom'),
 		},
 	},
-	key_tables = {
-		copy_mode = {
-			{ key = 'p', mods = 'CTRL', action = wezterm.action.CopyMode('MoveUp') },
-			{ key = 'n', mods = 'CTRL', action = wezterm.action.CopyMode('MoveDown') },
-		}
-	},
 	font = wezterm.font_with_fallback({
 		-- Main font
 		"Fira Code",
