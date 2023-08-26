@@ -1,0 +1,11 @@
+# add syntax highlighting to the shell
+zmodule zsh-users/zsh-syntax-highlighting
+
+# add completions for commands
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+zmodule zsh-users/zsh-autosuggestions
+
+# override yank and paste to use system clipboard for zsh_vim_mode
+zmodule ${ZSHCONFIG}/zim --source zsh_vim_mode.zsh
+zmodule jeffreytse/zsh-vi-mode

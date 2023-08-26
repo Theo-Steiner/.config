@@ -1,2 +1,3 @@
 .neoconf.json
 .envrc
+*.zwc

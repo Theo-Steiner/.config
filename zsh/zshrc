@@ -1,0 +1,16 @@
+# zshrc is only sourced for interactive shells
+#
+# initialize pretty prompt with starship
+eval "$(starship init zsh)"
+# initialize direnv
+eval "$(direnv hook zsh)"
+# initialize fnm (fast node manager)
+eval "$(fnm env --use-on-cd)"
+# initialize zim (package manager for zsh)
+source ${ZSHCONFIG}/zim/init.zsh
+
+alias vi=nvim
+
+function vic {
+  cd ~/.config && vi
+}

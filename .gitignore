@@ -3,8 +3,14 @@
 # ignore in unignored subdirs
 nvim/plugin
 # unignore
+!bootstrap
+!bin
 !git
 !nvim
 !fish
 !wezterm
 !starship.toml
+# zsh
+!zsh
+zsh/.zimrc
+!zsh/.zshrc
