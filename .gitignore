@@ -10,7 +10,5 @@ nvim/plugin
 !fish
 !wezterm
 !starship.toml
-# zsh
 !zsh
-zsh/.zimrc
-!zsh/.zshrc
+!README.md

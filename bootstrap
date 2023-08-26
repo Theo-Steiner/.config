@@ -1,0 +1,9 @@
+# install hombrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# add brew output to path
+eval "$(/opt/homebrew/bin/brew shellenv)"
+# create root .zshrc symlink to .config/zsh/zsshrc
+ln -s "$HOME/.config/zsh/zshrc" "$HOME/.zshrc"
+# create root .zshenv symlink to .config/zsh/zshenv
+ln -s "$HOME/.config/zsh/zshenv" "$HOME/.zshenv"
+zsh
