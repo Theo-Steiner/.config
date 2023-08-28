@@ -60,17 +60,19 @@ end)
 
 --- switch to the alternate pane of the current tab
 wezterm.on('alternate-pane', function(current_window, current_pane)
-	create_second_pane(current_window, current_pane)
-	-- if two panes exist already, get the alternate pane (currently *not* selected pane)
-	current_window:perform_action(
-		wezterm.action.ActivatePaneDirection('Next'),
-		current_pane
-	)
+	local did_create = create_second_pane(current_window, current_pane)
+	if not did_create then
+		current_window:perform_action(
+			wezterm.action.ActivatePaneDirection('Next'),
+			current_pane
+		)
+	end
 end)
 
 --- toggle zoom of the current pane to reveal the alternate-pane
 wezterm.on('alternate-zoom', function(current_window, current_pane)
-	if not create_second_pane(current_window, current_pane) then
+	local did_create = create_second_pane(current_window, current_pane)
+	if not did_create then
 		-- if two panes exist already, get the alternate pane (currently *not* selected pane)
 		current_window:perform_action(
 			wezterm.action.TogglePaneZoomState,
