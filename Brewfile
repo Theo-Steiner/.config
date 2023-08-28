@@ -4,7 +4,7 @@ tap "homebrew/cask-versions"
 tap "homebrew/services"
 
 # install neovim & wezterm (nighlty, because living on the edge)
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 cask "wezterm-nightly"
 
 # make terminal pretty
