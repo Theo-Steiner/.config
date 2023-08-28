@@ -2,6 +2,8 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 # add brew output to path
 eval "$(/opt/homebrew/bin/brew shellenv)"
+# install required brew packages
+brew bundle --file ~/.config/Brewfile
 # create root .zshrc symlink to .config/zsh/zsshrc
 ln -s "$HOME/.config/zsh/zshrc" "$HOME/.zshrc"
 # create root .zshenv symlink to .config/zsh/zshenv

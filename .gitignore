@@ -3,6 +3,7 @@
 # ignore in unignored subdirs
 nvim/plugin
 # unignore
+!Brewfile
 !bootstrap
 !bin
 !git
