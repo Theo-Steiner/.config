@@ -40,6 +40,16 @@ Set.foldlevel = 99
 Set.foldmethod = "expr"
 Set.foldexpr = "nvim_treesitter#foldexpr()"
 
+-- disable swapfiles and instead trigger autoread every time a buffer is entered/ focused
+Set.swapfile = false
+Set.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+	pattern = { "*.*" },
+	callback = function()
+		vim.cmd([[checktime]])
+	end,
+})
+
 -- Remember folds for buffers
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
 	pattern = { "*.*" },
