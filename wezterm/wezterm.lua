@@ -13,7 +13,7 @@ local create_second_pane = function(current_window, current_pane)
 	-- if current pane is the only pane in the tab, create a new horizontal split pane
 	if #current_tab_pane_ids == 1 then
 		current_window:perform_action(
-			wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }),
+			wezterm.action.SplitPane({ direction = 'Down', size = { Percent = 30 } }),
 			current_pane
 		)
 		return true
