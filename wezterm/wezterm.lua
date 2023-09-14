@@ -83,6 +83,33 @@ wezterm.on('alternate-zoom', function(current_window, current_pane)
 	end
 end)
 
+local process_icons = {
+	['nvim'] = wezterm.nerdfonts.custom_v_lang,
+	['node'] = wezterm.nerdfonts.dev_nodejs_small,
+	['zsh'] = wezterm.nerdfonts.cod_terminal,
+	['git'] = wezterm.nerdfonts.dev_git,
+}
+
+local function get_current_working_dir(tab)
+	local current_dir = tab.active_pane.current_working_dir
+	return string.gsub(current_dir, '(.*[/\\])(.*)', '%2')
+end
+
+local function get_process(tab)
+	local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
+	return string.format('%s  %s', process_icons[process_name] or process_name, process_name)
+end
+
+wezterm.on(
+	'format-tab-title',
+	function(tab)
+		local title = string.format('%s: %s  ', get_process(tab), get_current_working_dir(tab))
+		return {
+			{ Text = title },
+		}
+	end
+)
+
 return {
 	-- don't display ugly bar at the top
 	window_decorations = "RESIZE",
