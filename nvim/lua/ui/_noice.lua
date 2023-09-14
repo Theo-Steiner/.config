@@ -46,6 +46,12 @@ return {
 					}
 				}
 			},
+			routes = {
+				{
+					view = "split",
+					filter = { event = "msg_show", min_height = 20 },
+				},
+			}
 		})
 	end,
 }
