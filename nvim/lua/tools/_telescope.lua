@@ -48,6 +48,14 @@ return {
 		},
 		-- use <leader> fc to search for merge conflicts
 		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
+		-- use <leader> fc to search for merge conflicts
+		{
+			"<C-g>",
+			function()
+				require('telescope.builtin').git_branches()
+			end,
+			silent = true
+		},
 	},
 	config = function()
 		local telescope = require("telescope")

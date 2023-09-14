@@ -14,3 +14,7 @@ alias vi=nvim
 function vic {
   cd ~/.config && vi
 }
+
+export FZF_ALT_C_COMMAND='fd --type d . $HOME'
+
+bindkey -s '^g' '^ugit_checkout_fzf^M'

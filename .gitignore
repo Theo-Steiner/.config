@@ -12,4 +12,5 @@ nvim/plugin
 !wezterm
 !starship.toml
 !zsh
+!fd
 !README.md

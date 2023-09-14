@@ -13,6 +13,7 @@ brew "exa"
 cask "font-fira-code"
 
 # get essential cli tools
+brew "fzf"
 brew "ripgrep"
 brew "fd"
 brew "direnv"
