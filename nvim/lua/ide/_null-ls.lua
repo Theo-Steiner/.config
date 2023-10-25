@@ -25,6 +25,7 @@ return {
 		})
 
 		null_ls.setup({
+			root_dir = require("null-ls.utils").root_pattern(".git", "package.json"),
 			sources = {
 				null_ls.builtins.formatting.black,
 				stylelint,
