@@ -4,6 +4,7 @@ return {
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	build = ":TSUpdate",
 	config = function()
+		vim.g.skip_ts_context_commentstring_module = true
 		vim.cmd([[autocmd BufRead,BufEnter *.astro set filetype=astro]])
 		require("nvim-treesitter.configs").setup({
 			modules = {},
@@ -20,9 +21,6 @@ return {
 			indent = {
 				-- this indentation currently over indents after closing a tag
 				enable = false,
-			},
-			context_commentstring = {
-				enable = true
 			},
 		})
 	end,
