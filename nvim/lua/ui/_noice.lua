@@ -9,7 +9,9 @@ return {
 	},
 	config = function()
 		require("noice").setup({
+			presets = { long_message_to_split = true, },
 			lsp = {
+				progress = { enabled = false },
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = false,
 					["vim.lsp.util.stylize_markdown"] = false,
@@ -46,12 +48,6 @@ return {
 					}
 				}
 			},
-			routes = {
-				{
-					view = "split",
-					filter = { event = "msg_show", min_height = 20 },
-				},
-			}
 		})
 	end,
 }
