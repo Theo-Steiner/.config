@@ -65,7 +65,7 @@ return {
 							fg = utils.extract_color_from_hllist("fg", { "Special", "Boolean", "Constant" }, "#000000"),
 						},
 						fmt = function()
-							return vim.g.AutoFormattingEnabled and "" or ""
+							return vim.g.disable_autoformat and "" or ""
 						end,
 					},
 				},

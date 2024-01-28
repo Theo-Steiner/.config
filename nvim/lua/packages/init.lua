@@ -38,9 +38,12 @@ return require("lazy").setup({
 		require("tools._commentary"),
 	}),
 	_load.on_buf_read({
+		-- setup lsps
 		require("ide.lsp"),
-		-- allows non-lsp processes (prettier, eslint) to run lsp-like
-		require("ide._null-ls"),
+		-- formatting (check attached formatters with "ConformInfo")
+		require("ide._conform"),
+		-- linting (check attached formatters with "ConformInfo")
+		require("ide._lint"),
 		-- Git signs
 		require("ide._gitsigns"),
 		-- heuristically set buffer options
@@ -62,5 +65,5 @@ return require("lazy").setup({
 	_load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
 		require("ui._noice"),
-	})
+	}),
 })

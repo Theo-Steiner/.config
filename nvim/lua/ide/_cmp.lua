@@ -23,70 +23,68 @@ return {
 	},
 	config = function()
 		local cmp = require("cmp")
-		cmp.setup(
-			{
-				snippet = {
-					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
-					end,
-				},
-				mapping = cmp.mapping.preset.insert({
-					['<C-u>'] = cmp.mapping.scroll_docs(-4),
-					['<C-d>'] = cmp.mapping.scroll_docs(4),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif vim.fn["vsnip#available"](1) == 1 then
-							feedkey("<Plug>(vsnip-expand-or-jump)", "")
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-						end
-					end, { "i", "s" }),
-					["<S-Tab>"] = cmp.mapping(function()
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-							feedkey("<Plug>(vsnip-jump-prev)", "")
-						end
-					end, { "i", "s" }),
-					['<C-e>'] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping({
-						i = function(fallback)
-							if cmp.visible() then
-								cmp.confirm({ select = true })
-							else
-								fallback()
-							end
-						end,
-						s = cmp.mapping.confirm({ select = true }),
-						c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-					}),
-				}),
-				sources = cmp.config.sources({
-					{ name = 'nvim_lsp' },
-					{ name = 'vsnip' },
-					{ name = 'buffer' },
-					{ name = 'path' },
-					{ name = 'nvim_lua' },
-					{ name = 'nvim_lsp_signature-help' },
-				}),
-				formatting = {
-					format = require('lspkind').cmp_format({}),
-				},
-				completion = {
-					get_trigger_characters = function(trigger_characters)
-						local new_trigger_characters = {}
-						for _, char in ipairs(trigger_characters) do
-							if char ~= '>' then
-								table.insert(new_trigger_characters, char)
-							end
-						end
-						return new_trigger_characters
+		cmp.setup({
+			snippet = {
+				expand = function(args)
+					vim.fn["vsnip#anonymous"](args.body)
+				end,
+			},
+			mapping = cmp.mapping.preset.insert({
+				["<C-u>"] = cmp.mapping.scroll_docs(-4),
+				["<C-d>"] = cmp.mapping.scroll_docs(4),
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif vim.fn["vsnip#available"](1) == 1 then
+						feedkey("<Plug>(vsnip-expand-or-jump)", "")
+					elseif has_words_before() then
+						cmp.complete()
+					else
+						fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
 					end
-				}
-			}
-		)
-	end
+				end, { "i", "s" }),
+				["<S-Tab>"] = cmp.mapping(function()
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+						feedkey("<Plug>(vsnip-jump-prev)", "")
+					end
+				end, { "i", "s" }),
+				["<C-e>"] = cmp.mapping.abort(),
+				["<CR>"] = cmp.mapping({
+					i = function(fallback)
+						if cmp.visible() then
+							cmp.confirm({ select = true })
+						else
+							fallback()
+						end
+					end,
+					s = cmp.mapping.confirm({ select = true }),
+					c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+				}),
+			}),
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				{ name = "vsnip" },
+				{ name = "buffer" },
+				{ name = "path" },
+				{ name = "nvim_lua" },
+				{ name = "nvim_lsp_signature-help" },
+			}),
+			formatting = {
+				format = require("lspkind").cmp_format({}),
+			},
+			completion = {
+				get_trigger_characters = function(trigger_characters)
+					local new_trigger_characters = {}
+					for _, char in ipairs(trigger_characters) do
+						if char ~= ">" then
+							table.insert(new_trigger_characters, char)
+						end
+					end
+					return new_trigger_characters
+				end,
+			},
+		})
+	end,
 }
