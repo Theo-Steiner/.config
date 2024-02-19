@@ -16,5 +16,6 @@ function vic {
 }
 
 export FZF_ALT_C_COMMAND='fd --type d . $HOME'
+bindkey '\ex' fzf-cd-widget
 
 bindkey -s '^g' '^ugit_checkout_fzf^M'

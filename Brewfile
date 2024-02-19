@@ -9,7 +9,9 @@ cask "wezterm-nightly"
 
 # make terminal pretty
 brew "starship"
-brew "exa"
+# make ls awesome
+brew "eza"
+# use a fancy font
 cask "font-fira-code"
 
 # get essential cli tools
