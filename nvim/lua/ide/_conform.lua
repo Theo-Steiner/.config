@@ -8,7 +8,10 @@ return {
 				lua = { "stylua" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				vue = { "prettier" }
+				vue = { "prettier" },
+				scss = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable sync formatting when autoformatting is disabled, or sync formatting for the filetype too slow
