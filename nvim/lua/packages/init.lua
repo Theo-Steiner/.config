@@ -15,7 +15,7 @@ return require("lazy").setup({
 		-- show colors next to color values
 		"norcalli/nvim-colorizer.lua",
 		-- treesitter context shows current block at the very top
-		"nvim-treesitter/nvim-treesitter-context",
+		require("ide._treesitter-context"),
 		-- add closing bracket automatically, can be stepped through with closing bracket
 		"windwp/nvim-autopairs",
 		-- lsp completions
