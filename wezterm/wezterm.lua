@@ -88,25 +88,28 @@ local process_icons = {
 	['node'] = wezterm.nerdfonts.dev_nodejs_small,
 	['zsh'] = wezterm.nerdfonts.cod_terminal,
 	['git'] = wezterm.nerdfonts.dev_git,
+	['python'] = wezterm.nerdfonts.dev_python,
 }
 
-local function get_current_working_dir(tab)
-	local current_dir = tab.active_pane.current_working_dir
-	return string.gsub(current_dir, '(.*[/\\])(.*)', '%2')
-end
-
-local function get_process(tab)
-	local process_name = string.gsub(tab.active_pane.foreground_process_name, '(.*[/\\])(.*)', '%2')
-	return string.format('%s  %s', process_icons[process_name] or process_name, process_name)
+local get_last_segment = function(str)
+	return str:gsub('(.*[/\\])(.*)', '%2')
 end
 
 wezterm.on(
 	'format-tab-title',
 	function(tab)
-		local title = string.format('%s: %s  ', get_process(tab), get_current_working_dir(tab))
-		return {
-			{ Text = title },
-		}
+		local active_pane = tab.active_pane
+		local current_dir = active_pane.current_working_dir.file_path
+		-- only set the title manually if the directory is available
+		if current_dir ~= nil then
+			local process = get_last_segment(active_pane.foreground_process_name):lower()
+			local dir = get_last_segment(current_dir)
+			return { {
+				Text = ('%s %s'):format(
+					process_icons[process] or ('%s :'):format(process),
+					dir)
+			} }
+		end
 	end
 )
 
