@@ -29,7 +29,6 @@ return require("lazy").setup({
 		require("tools._trouble"),
 		-- file tree
 		require("ui._neotree"),
-		require("ui._neotree_file_operations"),
 		-- plugins and setting to enable debugging
 		-- <leader>b to set a breakpoint and <leader>c to continue a debug session
 		require("ide.lsp.debugging"),
@@ -65,5 +64,7 @@ return require("lazy").setup({
 	_load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
 		require("ui._noice"),
+		-- Enable lsp operations for file tree
+		require("ui._neotree_file_operations"),
 	}),
 })
