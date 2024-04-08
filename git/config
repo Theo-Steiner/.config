@@ -1,0 +1,27 @@
+[user]
+        name = Theodor Steiner
+        email = theosteiner@gmail.com
+ 
+; automagically create a remote branch on push
+[push]
+        autoSetupRemote = true
+
+; remember merge conflict resolutions and automatically 
+[rerere]
+        enabled = true
+        autoUpdate = true
+
+; sort branches by descending committerdates
+[branch]
+        sort = -committerdate
+
+; set neovim as the pager and remap q to instantly close the pager window
+[core]
+        pager = nvim -R - -c 'nmap <nowait><silent> q :q!<cr>'
+; disable the ui, so that the nvim pager output is not littered with ansi colors
+[color]
+        ui = false
+
+; include ~/.local/.gitconfig, so that the .gitconfig can be extended with sensitive information locally
+[include]
+        path = ~/.local/.gitconfig
