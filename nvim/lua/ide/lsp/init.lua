@@ -32,14 +32,6 @@ return {
 			end,
 		})
 
-		-- since we're using typescript-tools.nvim instead of the plain tsserver
-		-- it can't be installed by mason and thus needs special handling
-		if not server_settings.is_disabled("tsserver") then
-			require("typescript-tools").setup(
-				server_settings.get_config("tsserver")
-			)
-		end
-
 		-- setup diagnostics
 		require("ide.lsp.diagnostics").setup()
 	end,

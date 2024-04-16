@@ -4,7 +4,7 @@ local M = {}
 M.default_servers = {
 	"html",
 	"cssls",
-	-- 'tsserver' is installed via "pmizio/typescript-tools.nvim"
+	"tsserver",
 	"svelte",
 	"lua_ls",
 	"volar",
@@ -29,12 +29,6 @@ M.is_disabled = function(client)
 end
 
 local get_server_settings = function(server_name)
-	-- don't add ts to volar filetypes if tsserver is not explicitly disabled
-	if server_name == "volar" then
-		if not M.is_disabled("tsserver") then
-			return {}
-		end
-	end
 	-- return standard server settings in all other cases
 	return server_settings[server_name] or {}
 end
@@ -42,7 +36,7 @@ end
 -- server_settings.setup()
 M.setup = function()
 	local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
-	local lsp_attach = function(client, bufnr)
+	local lsp_attach = function(_, _)
 		-- helper
 		local surround_helper = function(cmd)
 			return string.format("<cmd>lua vim.lsp.%s<cr>", cmd)
