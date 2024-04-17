@@ -1,50 +1,51 @@
 local getVisualSelection = function()
 	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg('v')
-	vim.fn.setreg('v', {})
+	local text = vim.fn.getreg("v")
+	vim.fn.setreg("v", {})
 
 	text = string.gsub(text, "\n", "")
 	if #text > 0 then
 		return text
 	else
-		return ''
+		return ""
 	end
 end
 
 return {
 	"nvim-telescope/telescope.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", 'cljoly/telescope-repo.nvim',
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-treesitter/nvim-treesitter",
 		{
 			"Theo-Steiner/togglescope",
 			-- uncomment to use from ~projects/togglescope
 			-- dev = true
-		}
+		},
 	},
 	keys = {
 		-- use <leader> ff to open fuzzy finder preview to find file in project
 		{
 			"<leader>ff",
 			function()
-				require('telescope').extensions.togglescope.find_files({ default_text = getVisualSelection() })
+				require("telescope").extensions.togglescope.find_files({ default_text = getVisualSelection() })
 			end,
 			silent = true,
-			mode = { "n", "v" }
+			mode = { "n", "v" },
 		},
 		-- use <leader> fg to open fuzzy finder preview to live-grep in project
 		{
 			"<leader>fg",
 			function()
-				require('telescope').extensions.togglescope.live_grep({ default_text = getVisualSelection() })
+				require("telescope").extensions.togglescope.live_grep({
+					additional_args = {
+						"-g",
+						"!package-lock.json",
+					},
+					default_text = getVisualSelection(),
+				})
 			end,
 			silent = true,
-			mode = { "n", "v" }
-		},
-		-- find projects using cljoly/telescope-repo.nvim
-		{
-			"<leader>fp",
-			function()
-				require 'telescope'.extensions.repo.list()
-			end,
+			mode = { "n", "v" },
 		},
 		-- use <leader> fc to search for merge conflicts
 		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
@@ -52,9 +53,9 @@ return {
 		{
 			"<C-g>",
 			function()
-				require('telescope.builtin').git_branches()
+				require("telescope.builtin").git_branches()
 			end,
-			silent = true
+			silent = true,
 		},
 	},
 	config = function()
@@ -63,18 +64,22 @@ return {
 		local config = {
 			extensions = {
 				togglescope = {
-					find_files = { ['<C-^>'] = { no_ignore = true, hidden = true, togglescope_title = "Find Files (hidden)" } },
+					find_files = {
+						["<C-^>"] = {
+							no_ignore = true,
+							hidden = true,
+							togglescope_title = "Find Files (hidden)",
+						},
+					},
 					live_grep = {
-						['<C-^>'] = {
+						["<C-^>"] = {
 							additional_args = {
-								'--no-ignore',
-								'--hidden',
-								"-g",
-								"!package-lock.json",
+								"--no-ignore",
+								"--hidden",
 							},
-							togglescope_title = "Live Grep (hidden)"
-						}
-					}
+							togglescope_title = "Live Grep (hidden)",
+						},
+					},
 				},
 				repo = {
 					settings = {
@@ -87,20 +92,20 @@ return {
 						-- not yet implemented https://github.com/cljoly/telescope-repo.nvim/issues/56 maybe do a PR
 						mappings = {
 							i = {
-								['<CR>'] = function()
-									print('hello')
-								end
-							}
-						}
-					}
-				}
+								["<CR>"] = function()
+									print("hello")
+								end,
+							},
+						},
+					},
+				},
 			},
 			defaults = {
 				file_ignore_patterns = { "^.git/" },
 				mappings = {
 					i = {
 						["<c-t>"] = trouble.open_with_trouble,
-						["<c-f>"] = require("telescope.actions").to_fuzzy_refine
+						["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
 					},
 					n = {
 						["<c-t>"] = trouble.open_with_trouble,
@@ -122,7 +127,7 @@ return {
 					height = 0.80,
 					preview_cutoff = 120,
 				},
-				borderchars = { " ", " ", " ", " ", " ", " ", " ", " ", },
+				borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
 			},
 		}
 		telescope.setup(config)
