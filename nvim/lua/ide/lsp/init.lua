@@ -4,9 +4,8 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		"neovim/nvim-lspconfig",
 		"folke/neoconf.nvim",
-		'folke/neodev.nvim',
-		'hrsh7th/cmp-nvim-lsp',
-		"pmizio/typescript-tools.nvim",
+		"folke/neodev.nvim",
+		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
 		require("neoconf").setup({})
@@ -14,21 +13,19 @@ return {
 		require("mason").setup()
 		local server_settings = require("ide.lsp.servers")
 
-		require('mason-lspconfig').setup({
-			ensure_installed = server_settings.default_servers
+		require("mason-lspconfig").setup({
+			ensure_installed = server_settings.default_servers,
 		})
-		local lspconfig = require('lspconfig')
+		local lspconfig = require("lspconfig")
 
 		server_settings.setup()
 
-		require('mason-lspconfig').setup_handlers({
+		require("mason-lspconfig").setup_handlers({
 			function(server_name)
 				if server_settings.is_disabled(server_name) then
 					return
 				end
-				lspconfig[server_name].setup(
-					server_settings.get_config(server_name)
-				)
+				lspconfig[server_name].setup(server_settings.get_config(server_name))
 			end,
 		})
 
