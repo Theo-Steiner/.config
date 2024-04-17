@@ -1,17 +1,17 @@
 -- bootstrap and setup utils
-local _load = require("packages._lazy")
+local load = require("packages._lazy")
 
 return require("lazy").setup({
 	-- ****************************************
 	-- *************** Packages ***************
 	-- ****************************************
-	_load.eagerly({
+	load.eagerly({
 		-- colorscheme
 		require("ui._tokyonight"),
 		-- startup screen
 		require("ui._alpha"),
 	}),
-	_load.on_insert_enter({
+	load.on_insert_enter({
 		-- show colors next to color values
 		"norcalli/nvim-colorizer.lua",
 		-- treesitter context shows current block at the very top
@@ -21,7 +21,7 @@ return require("lazy").setup({
 		-- lsp completions
 		require("ide._cmp"),
 	}),
-	_load.lazily({
+	load.lazily({
 		-- *********** Triggered by Keys *************
 		-- telescope fuzzy finder <space> ff to FindFiles and <space> fg to LiveGrep
 		require("tools._telescope"),
@@ -36,7 +36,7 @@ return require("lazy").setup({
 		-- comment plugin by tpope.
 		require("tools._commentary"),
 	}),
-	_load.on_buf_read({
+	load.on_buf_read({
 		-- setup lsps
 		require("ide.lsp"),
 		-- formatting (check attached formatters with "ConformInfo")
@@ -61,7 +61,7 @@ return require("lazy").setup({
 		-- svelte specific expansions defined in _surround
 		require("tools._surround"),
 	}),
-	_load.on_idle({
+	load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
 		require("ui._noice"),
 		-- Enable lsp operations for file tree
