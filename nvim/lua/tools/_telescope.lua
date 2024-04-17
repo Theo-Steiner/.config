@@ -39,7 +39,7 @@ return {
 				require("telescope").extensions.togglescope.live_grep({
 					additional_args = {
 						"-g",
-						"!package-lock.json",
+						"!*-lock.*",
 					},
 					default_text = getVisualSelection(),
 				})
