@@ -12,6 +12,10 @@ return {
 				scss = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
+				markdown = { "prettier" },
+				json = { "prettier" },
+				-- tsconfig.json files are automatically opened as 'jsonc' files (see lsp/servers/jsonls.lua)
+				jsonc = { "prettier" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable sync formatting when autoformatting is disabled, or sync formatting for the filetype too slow
