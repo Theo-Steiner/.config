@@ -32,6 +32,8 @@ return require("lazy").setup({
 		-- plugins and setting to enable debugging
 		-- <leader>b to set a breakpoint and <leader>c to continue a debug session
 		require("ide.lsp.debugging"),
+		require("ide.lsp.debugging.js-dap"),
+		require("ide.lsp.debugging.go-dap"),
 		-- *********** Triggered by CMDs *************
 		-- comment plugin by tpope.
 		require("tools._commentary"),
