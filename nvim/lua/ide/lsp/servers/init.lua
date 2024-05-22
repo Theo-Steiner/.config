@@ -8,6 +8,7 @@ M.default_servers = {
 	"svelte",
 	"lua_ls",
 	"volar",
+	"gopls",
 	"jsonls",
 	"emmet_ls",
 }
@@ -18,6 +19,7 @@ local server_settings = {
 	lua_ls = require("ide.lsp.servers.lua_lsp"),
 	jsonls = require("ide.lsp.servers.jsonls"),
 	tsserver = require("ide.lsp.servers.tsserver"),
+	gopls = require("ide.lsp.servers.gopls"),
 }
 
 -- easily disable lsps in .neoconf.json like this

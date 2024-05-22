@@ -11,6 +11,7 @@ return {
 			typescriptreact = { "eslint" },
 			vue = { "eslint" },
 			svelte = { "eslint" },
+			go = { "golangcilint" }
 		}
 		-- setup lua autocommand to lint when first opening, after inserting and when writing the buffer.
 		vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "BufEnter" }, {
