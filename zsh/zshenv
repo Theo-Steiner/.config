@@ -1,10 +1,10 @@
 # zshrc is also sourced when the shell is started programatically
 
-# add .config/bin to path and then export to sub-processes can use it
-export PATH="$HOME/.config/bin/:$PATH"
-
 # make homebrew and its libraries available
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# setup for the go version manager "goenv"
+eval "$(goenv init -)"
 
 # don't set ZDOTDIR to this directory, to not save cache files/history here
 export ZSHCONFIG="$HOME/.config/zsh"
@@ -15,3 +15,8 @@ export VISUAL=nvim
 
 # should not be necessary if the program is in the path? but check if maybe node doesn't add it?
 # export LAUNCH_EDITOR=launch_nvim
+
+# add ~/.config/bin to path and then export to sub-processes can use it
+export DOTFILESPATH="$HOME/.config"
+
+export PATH="$DOTFILESPATH/bin:$PATH"

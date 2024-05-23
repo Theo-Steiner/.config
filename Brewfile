@@ -7,6 +7,10 @@ tap "homebrew/services"
 brew "neovim"
 cask "wezterm-nightly"
 
+# install language version managers
+brew "goenv"
+brew "fnm"
+
 # make terminal pretty
 brew "starship"
 # make ls awesome
@@ -19,5 +23,4 @@ brew "fzf"
 brew "ripgrep"
 brew "fd"
 brew "direnv"
-brew "fnm"
 brew "gh"
