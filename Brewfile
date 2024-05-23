@@ -8,7 +8,7 @@ brew "neovim"
 cask "wezterm-nightly"
 
 # install language version managers
-brew "goenv"
+brew "go"
 brew "fnm"
 
 # make terminal pretty

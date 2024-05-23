@@ -3,9 +3,6 @@
 # make homebrew and its libraries available
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# setup for the go version manager "goenv"
-eval "$(goenv init -)"
-
 # don't set ZDOTDIR to this directory, to not save cache files/history here
 export ZSHCONFIG="$HOME/.config/zsh"
 
@@ -19,4 +16,8 @@ export VISUAL=nvim
 # add ~/.config/bin to path and then export to sub-processes can use it
 export DOTFILESPATH="$HOME/.config"
 
-export PATH="$DOTFILESPATH/bin:$PATH"
+# add go related stuff to the path
+export GOROOT="$(brew --prefix go)/libexec"
+export GOPATH="$HOME/go"
+
+export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PATH"
