@@ -7,8 +7,8 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export ZSHCONFIG="$HOME/.config/zsh"
 
 # set default editor
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=nvim_auto_restart
+export VISUAL=nvim_auto_restart
 
 # should not be necessary if the program is in the path? but check if maybe node doesn't add it?
 # export LAUNCH_EDITOR=launch_nvim

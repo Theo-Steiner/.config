@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while true; do
+    nvim "$@"
+    if [ $? -ne 1 ]; then
+        break
+    fi
+done
