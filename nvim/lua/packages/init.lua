@@ -62,6 +62,8 @@ return require("lazy").setup({
 		-- for surrounding selected code, mapped to shift-S
 		-- svelte specific expansions defined in _surround
 		require("tools._surround"),
+		-- "folke/persistence.nvim"
+		require("tools._persistence"),
 	}),
 	load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info

@@ -1,8 +1,8 @@
-#!/bin/bash
-
+RESTART_COUNT=0
 while true; do
-    nvim "$@"
+    RESTART_COUNT=$RESTART_COUNT nvim "$@"
     if [ $? -ne 1 ]; then
         break
     fi
+    RESTART_COUNT=$((RESTART_COUNT + 1))
 done

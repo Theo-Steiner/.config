@@ -30,6 +30,7 @@ return {
 				['LazyDone']
 			),
 		}
+
 		local mru = require("alpha.themes.theta").mru
 		local dashboard = require("alpha.themes.dashboard")
 		local header = {
@@ -58,12 +59,13 @@ return {
 				{
 					type = "group",
 					val = function()
-						return { mru(0, vim.fn.getcwd()) }
+						return { mru(0, vim.fn.getcwd(), 3) }
 					end,
 					opts = { shrink_margin = false },
 				},
 			},
 		}
+
 
 		local buttons = {
 			type = "group",
@@ -77,6 +79,9 @@ return {
 					}
 				},
 				{ type = "padding", val = 1 },
+				dashboard.button("r",
+					("  Restore session"),
+					"<cmd>:lua require('persistence').load()<CR>"),
 				dashboard.button("l", "  Lazy.nvim", "<cmd>Lazy<CR>"),
 				dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
 			},
