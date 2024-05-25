@@ -116,8 +116,6 @@ wezterm.on(
 return {
 	-- don't display ugly bar at the top
 	window_decorations = "RESIZE",
-	window_background_opacity = .9,
-	macos_window_background_blur = 20,
 	window_padding = {
 		left = 5,
 		right = 5,
@@ -128,14 +126,9 @@ return {
 		font_size = 16,
 		active_titlebar_bg = '#1a1b26',
 	},
-	window_background_gradient = {
-		colors = { '#1a1b26', '#414868' },
-		-- Specifices a Linear gradient starting in the top left corner.
-		orientation = { Linear = { angle = -45.0 } },
-	},
 	inactive_pane_hsb = {
-		saturation = 1,
-		brightness = .3,
+		saturation = .4,
+		brightness = .5,
 	},
 	keys = {
 		-- bind wezterm copy mode to inspector hotkey
@@ -164,11 +157,11 @@ return {
 		"Symbols Nerd Font",
 	}),
 	font_size = 18,
-	color_scheme = 'tokyonight_moon',
+	color_scheme = 'Tokyo Night',
 	colors = {
 		tab_bar = {
 			active_tab = {
-				bg_color = '#414868',
+				bg_color = '#1a1b26',
 				fg_color = '#fefefe',
 			},
 			inactive_tab = {
