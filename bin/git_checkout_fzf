@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# fzf from all current git branches and replace spaces
+BRANCH="$(git branch --list | fzf | tr -d ‘[:space:]’)"
+
+# if branch selected
+if [ -n "$BRANCH" ]; then
+  # check out the selected branch
+  git checkout $BRANCH
+fi

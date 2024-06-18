@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# echo "vue files sorted by linecount"
+# find src -type f -name "*.vue" | xargs wc -l | sort
+# find src -type f -name "*.vue" | xargs awk 'END{FNUM=ARGC-1; print "*.vue file average linecount: " (NR-FNUM)/FNUM; print "total filecount: " FNUM; print "total linecount: " (NR-FNUM);}'
+# find src -type f -name "*.ts" | xargs awk 'END{FNUM=ARGC-1; print "*.ts file average linecount: " (NR-FNUM)/FNUM; print "total filecount: " FNUM; print "total linecount: " (NR-FNUM);}'
+
+echo "vue files sorted by wordcount"
+find src -type f -name "*.vue" | xargs wc | sort
+# find src -type f -name "*.vue" | xargs awk 'END{FNUM=ARGC-1; print "*.vue file average wordcount: " (NR-FNUM)/FNUM; print "total filecount: " FNUM; print "total wordcount: " (NR-FNUM);}'
+# find src -type f -name "*.ts" | xargs awk 'END{FNUM=ARGC-1; print "*.ts file average wordcount: " (NR-FNUM)/FNUM; print "total filecount: " FNUM; print "total linecount: " (NR-FNUM);}'

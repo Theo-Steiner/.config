@@ -28,7 +28,9 @@ M.setup = function()
 			},
 		},
 	})
-	vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<cr>")
+	vim.keymap.set("n", "gl", vim.diagnostic.open_float)
+	vim.keymap.set("n", "<C-p>", vim.diagnostic.goto_prev)
+	vim.keymap.set("n", "<C-n>", vim.diagnostic.goto_next)
 end
 
 return M
