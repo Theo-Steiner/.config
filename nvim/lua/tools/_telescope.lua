@@ -60,7 +60,7 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope")
-		local trouble = require("trouble.providers.telescope")
+		local trouble = require("trouble.sources.telescope")
 		local config = {
 			extensions = {
 				togglescope = {
@@ -104,11 +104,11 @@ return {
 				file_ignore_patterns = { "^.git/" },
 				mappings = {
 					i = {
-						["<c-t>"] = trouble.open_with_trouble,
+						["<c-t>"] = trouble.open,
 						["<c-f>"] = require("telescope.actions").to_fuzzy_refine,
 					},
 					n = {
-						["<c-t>"] = trouble.open_with_trouble,
+						["<c-t>"] = trouble.open,
 						["q"] = require("telescope.actions").close,
 					},
 				},
