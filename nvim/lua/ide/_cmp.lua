@@ -64,8 +64,23 @@ return {
 				}),
 			}),
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
-				{ name = "vsnip" },
+				{
+					name = "nvim_lsp",
+					-- filter out useless snippets of the shape `bla` -> `<bla>${1}</bla>` 
+					entry_filter = function(entry)
+						-- get the documentation
+						local documentation = entry:get_documentation() or {}
+						-- useless snippets documentation always have the same shape:
+						-- {"```", "trigger_word", "```", "```text", "<trigger_word>${1}</trigger_word>", "```"}
+						local trigger_word = documentation[2]
+						-- if the item is a useless completion item, it should be of shape "<trigger_word>${1}</trigger_word>"
+						local expected_completion_item = ("<%s>${1}</%s>"):format(trigger_word, trigger_word)
+						return documentation[5] ~= expected_completion_item
+					end,
+				},
+				{
+					name = "vsnip",
+				},
 				{ name = "buffer" },
 				{ name = "path" },
 				{ name = "nvim_lua" },
