@@ -49,6 +49,13 @@ return {
 		},
 		-- use <leader> fc to search for merge conflicts
 		{ "<leader>fc", "<cmd>Telescope grep_string search=<<<<<<<<cr>", silent = true },
+		{
+			"<leader>fs",
+			function()
+				require("telescope.builtin").git_status()
+			end,
+			silent = true,
+		},
 		-- use <leader> fc to search for merge conflicts
 		{
 			"<C-g>",
