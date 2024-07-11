@@ -57,6 +57,8 @@ return require("lazy").setup({
 		require("tools._fugitive"),
 		-- Treesitter
 		require("ide._treesitter"),
+		-- github copilot because ai
+		require("ide._copilot"),
 		-- highlight unique letters on f press
 		require("ui._eyeliner"),
 		-- for surrounding selected code, mapped to shift-S
