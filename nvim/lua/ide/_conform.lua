@@ -29,14 +29,14 @@ return {
 					end
 				end
 
-				return { timeout_ms = 200, lsp_fallback = true }, on_format
+				return { timeout_ms = 200, lsp_fallback = "last" }, on_format
 			end,
 			format_after_save = function(bufnr)
 				-- only do async formatting when autoformatting is enabled, and sync formatting too slow
 				if vim.g.disable_autoformat or not slow_format_filetypes[vim.bo[bufnr].filetype] then
 					return
 				end
-				return { lsp_fallback = true }
+				return { lsp_fallback = "last" }
 			end,
 		})
 		vim.g.disable_autoformat = false
@@ -45,7 +45,7 @@ return {
 			vim.g.disable_autoformat = not vim.g.disable_autoformat
 		end, {})
 		vim.api.nvim_create_user_command("Fmt", function(args)
-			require("conform").format({ async = true, lsp_fallback = true, bufnr = args.bufnr })
+			require("conform").format({ async = true, lsp_fallback = "last", bufnr = args.bufnr })
 		end, {})
 	end,
 }
