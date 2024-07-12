@@ -10,7 +10,6 @@ return {
 		-- make section c font bold
 		custom_auto.normal.c.gui = "bold"
 
-		local utils = require("lualine.utils.utils")
 		require("lualine").setup({
 			options = {
 				theme = custom_auto,
