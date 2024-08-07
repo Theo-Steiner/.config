@@ -35,7 +35,8 @@ return {
 			window = {
 				position = "float",
 				mappings = {
-					["/"] = function(state)
+					["/"] = "none",
+					["<C-f>"] = function(state)
 						if state.search_pattern ~= nil then
 							cmds.clear_filter(state)
 						end
