@@ -5,6 +5,8 @@ M.default_servers = {
 	"html",
 	"cssls",
 	"tsserver",
+	-- disabled by default (special case in is_disabled)
+	"denols",
 	"svelte",
 	"lua_ls",
 	"volar",
@@ -22,16 +24,25 @@ local server_settings = {
 	gopls = require("ide.lsp.servers.gopls"),
 }
 
--- easily disable lsps in .neoconf.json like this
+-- easily disable lsps in project root .neoconf.json like this
 -- {
--- "tsserver": { "disable": true }
+-- "gopls": { "disable": true }
 -- }
-M.is_disabled = function(client)
-	return require("neoconf").get(client .. ".disable")
+M.is_disabled = function(server_name)
+	local neoconf = require("neoconf")
+	-- special case: deno is disabled by default, and only enabled if
+	-- 'tsserver' is disabled and 'denols' is explicitlty enabled
+	-- {
+	--   "tsserver": { "disable": true }
+	--   "denols":	 { "enable": true }
+	-- }
+	if server_name == "denols" then
+		return not neoconf.get("tsserver.disable") and neoconf.get("denols.enable")
+	end
+	return neoconf.get(server_name .. ".disable")
 end
 
 local get_server_settings = function(server_name)
-	-- return standard server settings in all other cases
 	return server_settings[server_name] or {}
 end
 
