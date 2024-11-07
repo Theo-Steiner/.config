@@ -5,17 +5,17 @@ return {
 		local slow_format_filetypes = {}
 		require("conform").setup({
 			formatters_by_ft = {
-				javascript = { "prettier" },
-				typescript = { "prettier" },
-				vue = { "prettier" },
-				svelte = { "prettier" },
+				javascript = { "prettier", lsp_format = "never" },
+				typescript = { "prettier", lsp_format = "never" },
+				vue = { "prettier", lsp_format = "never" },
+				svelte = { "prettier", lsp_format = "never" },
 				scss = { "prettier" },
 				css = { "prettier" },
 				html = { "prettier" },
 				markdown = { "prettier" },
-				json = { "prettier" },
+				json = { "prettier", lsp_format = "never" },
 				-- tsconfig.json files are automatically opened as 'jsonc' files (see lsp/servers/jsonls.lua)
-				jsonc = { "prettier" },
+				jsonc = { "prettier", lsp_format = "never" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable sync formatting when autoformatting is disabled, or sync formatting for the filetype too slow
