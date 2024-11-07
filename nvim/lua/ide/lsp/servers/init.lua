@@ -4,7 +4,7 @@ local M = {}
 M.default_servers = {
 	"html",
 	"cssls",
-	"tsserver",
+	"ts_ls",
 	-- disabled by default (special case in is_disabled)
 	"denols",
 	"svelte",
@@ -20,7 +20,7 @@ local server_settings = {
 	volar = require("ide.lsp.servers.volar"),
 	lua_ls = require("ide.lsp.servers.lua_ls"),
 	jsonls = require("ide.lsp.servers.jsonls"),
-	tsserver = require("ide.lsp.servers.tsserver"),
+	ts_ls = require("ide.lsp.servers.ts_ls"),
 	gopls = require("ide.lsp.servers.gopls"),
 }
 
@@ -31,13 +31,13 @@ local server_settings = {
 M.is_disabled = function(server_name)
 	local neoconf = require("neoconf")
 	-- special case: deno is disabled by default, and only enabled if
-	-- 'tsserver' is disabled and 'denols' is explicitlty enabled
+	-- 'ts_ls' is disabled and 'denols' is explicitlty enabled
 	-- {
-	--   "tsserver": { "disable": true }
-	--   "denols":	 { "enable": true }
+	--   "ts_ls":  { "disable": true }
+	--   "denols": { "enable": true }
 	-- }
 	if server_name == "denols" then
-		return not neoconf.get("tsserver.disable") and neoconf.get("denols.enable")
+		return not neoconf.get("ts_ls.disable") and neoconf.get("denols.enable")
 	end
 	return neoconf.get(server_name .. ".disable")
 end
