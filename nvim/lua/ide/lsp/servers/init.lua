@@ -4,15 +4,15 @@ local M = {}
 M.default_servers = {
 	"html",
 	"cssls",
-	"ts_ls",
-	-- disabled by default (special case in is_disabled)
-	"denols",
 	"svelte",
 	"lua_ls",
 	"volar",
 	"gopls",
 	"jsonls",
 	"emmet_ls",
+	"ts_ls",
+	-- disabled by default (special case in is_disabled)
+	"denols",
 }
 
 local server_settings = {
@@ -37,7 +37,8 @@ M.is_disabled = function(server_name)
 	--   "denols": { "enable": true }
 	-- }
 	if server_name == "denols" then
-		return not neoconf.get("ts_ls.disable") and neoconf.get("denols.enable")
+		-- deno is disabled until both ts_ls is disabled and denols is enabled
+		return not neoconf.get("ts_ls.disable") or not neoconf.get("denols.enable")
 	end
 	return neoconf.get(server_name .. ".disable")
 end
