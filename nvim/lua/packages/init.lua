@@ -6,6 +6,8 @@ return require("lazy").setup({
 	-- *************** Packages ***************
 	-- ****************************************
 	load.eagerly({
+		-- a collection of tools that for example improve large file handling
+		require("tools._snacks"),
 		-- colorscheme
 		require("ui._tokyonight"),
 		-- startup screen
