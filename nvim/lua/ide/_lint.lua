@@ -1,3 +1,10 @@
+local lint_with_root_dir = function()
+	local lint = require("lint")
+	local get_clients = vim.lsp.get_clients
+	local client = get_clients({ bufnr = 0 })[1] or {}
+	lint.try_lint(nil, { cwd = client.root_dir })
+end
+
 return {
 	"mfussenegger/nvim-lint",
 	config = function()
@@ -14,13 +21,13 @@ return {
 			go = { "golangcilint" }
 		}
 		-- setup lua autocommand to lint when first opening, after inserting and when writing the buffer.
-		vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "BufEnter" }, {
+		vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "BufEnter", "LspAttach" }, {
 			callback = function()
-				require("lint").try_lint(nil, { ignore_errors = true })
+				lint_with_root_dir()
 			end,
 		})
 		vim.api.nvim_create_user_command("Lint", function()
-			require("lint").try_lint()
+			lint_with_root_dir()
 		end, {})
 	end,
 }
