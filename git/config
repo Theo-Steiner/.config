@@ -22,6 +22,10 @@
 [color]
         ui = false
 
+; recurse over submodules when pulling
+[submodule]
+  recurse = true
+
 ; include ~/.local/.gitconfig, so that the .gitconfig can be extended with sensitive information locally
 [include]
         path = ~/.local/.gitconfig
