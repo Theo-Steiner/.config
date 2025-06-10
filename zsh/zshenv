@@ -20,4 +20,6 @@ export DOTFILESPATH="$HOME/.config"
 export GOROOT="$(brew --prefix go)/libexec"
 export GOPATH="$HOME/go"
 
-export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PATH"
+export ADB="$HOME/Library/Android/sdk/platform-tools"
+
+export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PATH:$ADB"
