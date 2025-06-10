@@ -90,7 +90,8 @@ end
 
 wezterm.on("format-tab-title", function(tab)
 	local active_pane = tab.active_pane
-	local current_dir = active_pane.current_working_dir.file_path
+	-- remove trailing slash
+	local current_dir = active_pane.current_working_dir.file_path:sub(1, -2)
 	-- only set the title manually if the directory is available
 	if current_dir ~= nil then
 		local process = get_last_segment(active_pane.foreground_process_name):lower()
