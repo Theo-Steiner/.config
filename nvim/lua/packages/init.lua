@@ -20,8 +20,8 @@ return require("lazy").setup({
 		require("ide._treesitter-context"),
 		-- add closing bracket automatically, can be stepped through with closing bracket
 		"windwp/nvim-autopairs",
-		-- lsp completions
-		require("ide._cmp"),
+		-- completions
+		require("ide._blink"),
 	}),
 	load.lazily({
 		-- *********** Triggered by Keys *************
