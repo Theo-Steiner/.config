@@ -8,4 +8,7 @@ brew bundle --file ~/.config/Brewfile
 ln -s "$HOME/.config/zsh/zshrc" "$HOME/.zshrc"
 # create root .zshenv symlink to .config/zsh/zshenv
 ln -s "$HOME/.config/zsh/zshenv" "$HOME/.zshenv"
+# install node 22 as a default so nvim plugins can use it
+fnm use 22 --install-if-missing
+# restart shell
 zsh

@@ -1,11 +1,8 @@
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/services"
-
 # install neovim & wezterm (nighlty, because living on the edge)
 brew "neovim"
-cask "wezterm-nightly"
+cask "wezterm@nightly"
+cask "raycast"
+cask "showyedge"
 
 # install language version managers
 brew "go"

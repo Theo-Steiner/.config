@@ -5,7 +5,7 @@ eval "$(starship init zsh)"
 # initialize direnv
 eval "$(direnv hook zsh)"
 # initialize fnm (fast node manager)
-eval "$(fnm env --use-on-cd)"
+eval "$(fnm env --use-on-cd --shell zsh)"
 # initialize zim (package manager for zsh)
 source ${ZSHCONFIG}/zim/init.zsh
 

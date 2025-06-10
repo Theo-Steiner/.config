@@ -141,7 +141,7 @@ return {
 	},
 	font = wezterm.font_with_fallback({
 		-- Main font
-		"FiraCode Nerd Font Mono",
+		"Fira Code",
 		-- Fallback to Nerd Font symbols if glyph is not available
 		"Symbols Nerd Font",
 	}),
