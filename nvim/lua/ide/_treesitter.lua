@@ -11,7 +11,7 @@ return {
 			auto_install = true,
 			ensure_installed = "all",
 			-- disable because they throw errors I don't understand
-			ignore_install = { "phpdoc", "markdown_inline", "cpp" },
+			ignore_install = { "phpdoc", "markdown_inline", "cpp", "ipkg" },
 			sync_install = false,
 			highlight = {
 				enable = true,
