@@ -1,6 +1,4 @@
 local wezterm = require("wezterm")
-local io = require("io")
-local os = require("os")
 
 --- creates a second pane if there is only one pane in the current tab
 ---@param current_window any
@@ -19,43 +17,6 @@ local create_second_pane = function(current_window, current_pane)
 	end
 	return false
 end
-
-wezterm.on("vim-mode", function(current_window, current_pane)
-	-- retrieve the last 300 lines of terminal output
-	local viewport_text = current_pane:get_lines_as_text(300)
-
-	-- create a temporary file to pass to vim
-	local tmpfile = os.tmpname()
-	local f, err = io.open(tmpfile, "w+")
-	if f == nil then
-		print(err)
-	else
-		f:write(viewport_text)
-		f:flush()
-		f:close()
-	end
-
-	-- Open a new window running vim and tell it to open the file
-	current_window:perform_action(
-		wezterm.action.SpawnCommandInNewWindow({
-			args = {
-				-- path to executable
-				"/opt/homebrew/bin/nvim",
-				-- temporary file name
-				tmpfile,
-				-- set cursor to last line
-				"+",
-				-- set filetype to sh for some best effor highlighting
-				"+set filetype=sh",
-			},
-		}),
-		current_pane
-	)
-
-	-- remove tmpfile after giving nvim time to read it
-	wezterm.sleep_ms(1000)
-	os.remove(tmpfile)
-end)
 
 --- switch to the alternate pane of the current tab
 wezterm.on("alternate-pane", function(current_window, current_pane)
@@ -120,12 +81,6 @@ return {
 		brightness = 0.5,
 	},
 	keys = {
-		-- bind wezterm copy mode to inspector hotkey
-		{
-			key = "i",
-			mods = "CMD|ALT",
-			action = wezterm.action.EmitEvent("vim-mode"),
-		},
 		-- go to alternate pane
 		{
 			key = "k",
