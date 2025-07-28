@@ -7,6 +7,7 @@ cask "showyedge"
 # install language version managers
 brew "go"
 brew "fnm"
+brew "pyenv"
 
 # make terminal pretty
 brew "starship"
@@ -22,3 +23,7 @@ brew "fd"
 brew "direnv"
 brew "gh"
 brew "sqlc"
+
+# daemons
+brew "prettierd"
+brew "eslint_d"
