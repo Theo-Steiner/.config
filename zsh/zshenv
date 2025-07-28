@@ -20,6 +20,11 @@ export DOTFILESPATH="$HOME/.config"
 export GOROOT="$(brew --prefix go)/libexec"
 export GOPATH="$HOME/go"
 
-export ADB="$HOME/Library/Android/sdk/platform-tools"
+# add pyenv to the path
+eval "$(pyenv init - zsh)"
+export PYENV_ROOT="$HOME/.pyenv"
 
-export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PATH:$ADB"
+export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
+
+# include ~/.local/zshenv, so that the environment can be extended with sensitive information locally
+source ~/.local/zshenv
