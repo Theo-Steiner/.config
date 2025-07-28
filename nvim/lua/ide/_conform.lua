@@ -3,19 +3,23 @@ return {
 	cmd = { "ConformInfo" },
 	config = function()
 		local slow_format_filetypes = {}
+		-- use 'prettierd' instead of prettier to avoid node startup cost
+		local prettier = "prettierd"
+		local eslint = "eslint_d"
+		local js_like = { eslint, prettier, lsp_format = "never" }
 		require("conform").setup({
 			formatters_by_ft = {
-				javascript = { "prettier", lsp_format = "never" },
-				typescript = { "prettier", lsp_format = "never" },
-				vue = { "prettier", lsp_format = "never" },
-				svelte = { "prettier", lsp_format = "never" },
-				scss = { "prettier" },
-				css = { "prettier" },
-				html = { "prettier" },
-				markdown = { "prettier" },
-				json = { "prettier", lsp_format = "never" },
+				javascript = js_like,
+				typescript = js_like,
+				vue = js_like,
+				svelte = js_like,
+				scss = { prettier },
+				css = { prettier },
+				html = { prettier },
+				markdown = { prettier },
+				json = { prettier, lsp_format = "never" },
 				-- tsconfig.json files are automatically opened as 'jsonc' files (see lsp/servers/jsonls.lua)
-				jsonc = { "prettier", lsp_format = "never" },
+				jsonc = { prettier, lsp_format = "never" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable sync formatting when autoformatting is disabled, or sync formatting for the filetype too slow
