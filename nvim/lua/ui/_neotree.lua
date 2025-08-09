@@ -6,8 +6,8 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	keys = {
-		-- open file tree witvh <leader> p
-		{ "<leader>pv", ":Neotree reveal toggle<cr>", silent = true },
+		-- open file tree with "-"
+		{ "-", ":Neotree reveal<cr>", silent = true },
 	},
 	cmd = "Neotree",
 	branch = "v3.x",
@@ -71,7 +71,6 @@ return {
 						"node_modules",
 					},
 				},
-				hijack_netrw_behavior = "disabled",
 				use_libuv_file_watcher = true,
 				window = {
 					fuzzy_finder_mappings = {
