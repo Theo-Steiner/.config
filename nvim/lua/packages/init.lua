@@ -10,8 +10,6 @@ return require("lazy").setup({
 		require("tools._snacks"),
 		-- colorscheme
 		require("ui._tokyonight"),
-		-- startup screen
-		require("ui._alpha"),
 	}),
 	load.on_insert_enter({
 		-- show colors next to color values
@@ -66,8 +64,6 @@ return require("lazy").setup({
 		-- for surrounding selected code, mapped to shift-S
 		-- svelte specific expansions defined in _surround
 		require("tools._surround"),
-		-- "folke/persistence.nvim"
-		require("tools._persistence"),
 	}),
 	load.on_idle({
 		-- Noice, manage notifications and get fancy command prompt and hover info
