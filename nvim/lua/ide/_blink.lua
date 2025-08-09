@@ -5,15 +5,8 @@ return {
 	---@type blink.cmp.Config
 	opts = {
 		keymap = {
-			preset = 'none',
-			['<S-Tab>'] = { 'select_prev', 'fallback' },
-			['<Tab>'] = { 'select_next', 'fallback' },
-			['<CR>'] = { 'accept', 'fallback' },
-			['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
-			['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
-			['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
-			['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
-			['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
+			preset = 'default',
+			['<C-f>'] = false
 		},
 		appearance = {
 			nerd_font_variant = 'mono'
