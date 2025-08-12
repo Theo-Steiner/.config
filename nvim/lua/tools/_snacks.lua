@@ -9,6 +9,8 @@ local ascii_art = function()
 	}, "\n")
 end
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- hijack when opening a directory
 vim.cmd [[
     autocmd StdinReadPre * let s:std_in=1
