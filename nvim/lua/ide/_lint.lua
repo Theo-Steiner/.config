@@ -10,15 +10,15 @@ return {
 	config = function()
 		local lint = require("lint")
 		-- use 'eslint_d' instead of 'eslint' to avoid node startup cost
-		local eslint = 'eslint_d'
+		local eslint_d = 'eslint_d'
 		-- attach linters for filetypes
 		lint.linters_by_ft = {
-			javascript = { eslint },
-			javascriptreact = { eslint },
-			typescript = { eslint },
-			typescriptreact = { eslint },
-			vue = { eslint },
-			svelte = { eslint },
+			javascript = { eslint_d },
+			javascriptreact = { eslint_d },
+			typescript = { eslint_d },
+			typescriptreact = { eslint_d },
+			vue = { eslint_d },
+			svelte = { eslint_d },
 			go = { "golangcilint" }
 		}
 		-- setup lua autocommand to lint when first opening, after inserting and when writing the buffer.
