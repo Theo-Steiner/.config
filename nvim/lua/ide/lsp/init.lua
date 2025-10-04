@@ -29,6 +29,9 @@ return {
 				"vue_ls",
 				"gopls",
 				"jsonls",
+				-- requires us to run 'LspCopilotSignIn' after the first install
+				-- (see: https://github.com/neovim/nvim-lspconfig/blob/e688b486fe9291f151eae7e5c0b5a5c4ef980847/lsp/copilot.lua#L4)
+				"copilot",
 				"emmet_ls",
 				-- instead of using `ts_ls` we use `vtsls` that provides a more vscode like wrapper for the typescript ls
 				-- it is also required for `vue_ls` to work properly (see: https://github.com/vuejs/language-tools/wiki/Neovim)

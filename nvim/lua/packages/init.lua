@@ -41,6 +41,8 @@ return require("lazy").setup({
 	load.on_buf_read({
 		-- setup lsps
 		require("ide.lsp"),
+		-- ai tooling
+		require("ide._sidekick"),
 		-- formatting (check attached formatters with "ConformInfo")
 		require("ide._conform"),
 		-- linting (check attached formatters with "ConformInfo")
@@ -57,8 +59,6 @@ return require("lazy").setup({
 		require("tools._fugitive"),
 		-- Treesitter
 		require("ide._treesitter"),
-		-- github copilot because ai
-		require("ide._copilot"),
 		-- highlight unique letters on f press
 		require("ui._eyeliner"),
 		-- for surrounding selected code, mapped to shift-S
