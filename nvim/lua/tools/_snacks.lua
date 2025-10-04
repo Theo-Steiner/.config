@@ -40,6 +40,10 @@ return {
 		words = { enabled = true },
 		-- render image previews in the buffer
 		image = { enabled = true },
+		picker = {
+			-- use snacks picker for code actions etc
+			ui_select = true
+		},
 		dashboard = {
 			preset = {
 				header = ascii_art(),
@@ -71,6 +75,6 @@ return {
 				{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
 				{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
 			}
-		}
+		},
 	}
 }
