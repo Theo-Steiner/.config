@@ -9,7 +9,7 @@ eval "$(fnm env --use-on-cd --shell zsh)"
 # initialize zim (package manager for zsh)
 source ${ZSHCONFIG}/zim/init.zsh
 
-alias vi=nvim_auto_restart
+alias vi=nvim
 
 function vic {
   cd ~/.config && vi

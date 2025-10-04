@@ -1,3 +1,5 @@
 .neoconf.json
 .envrc
 *.zwc
+
+**/.claude/settings.local.json

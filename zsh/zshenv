@@ -7,8 +7,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 export ZSHCONFIG="$HOME/.config/zsh"
 
 # set default editor
-export EDITOR=nvim_auto_restart
-export VISUAL=nvim_auto_restart
+export EDITOR=nvim
+
+export VISUAL=nvim
 
 # should not be necessary if the program is in the path? but check if maybe node doesn't add it?
 # export LAUNCH_EDITOR=launch_nvim
@@ -25,6 +26,8 @@ eval "$(pyenv init - zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 
 export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
+
+export OPENCODE_CONFIG="$HOME/.local/opencode.json" 
 
 # include ~/.local/zshenv, so that the environment can be extended with sensitive information locally
 source ~/.local/zshenv
