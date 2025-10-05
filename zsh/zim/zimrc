@@ -1,8 +1,9 @@
 
-zmodule zsh-users/zsh-syntax-highlighting
-
 # add completions for commands
 zmodule zsh-users/zsh-completions --fpath src
+
+zmodule zdharma-continuum/fast-syntax-highlighting
+
 zmodule completion
 zmodule Aloxaf/fzf-tab 
 zmodule zsh-users/zsh-autosuggestions
