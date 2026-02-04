@@ -22,8 +22,12 @@ export GOROOT="$(brew --prefix go)/libexec"
 export GOPATH="$HOME/go"
 
 # add pyenv to the path
-eval "$(pyenv init - zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
+# lazy load pyenv
+pyenv() {
+  eval "$(command pyenv init - zsh)"
+  pyenv "$@"
+}
 
 export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
 
