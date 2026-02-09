@@ -52,7 +52,11 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
 vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
 	pattern = { "*.*" },
 	callback = function()
-		vim.cmd([[mkview]])
+		-- skip mkview if the filename would be too long
+		local fname = vim.fn.expand('%:p')
+		if fname and #fname < 200 then
+			pcall(vim.cmd, [[mkview]])
+		end
 	end,
 })
 -- Load folds on buf-enter
