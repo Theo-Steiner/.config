@@ -1,7 +1,9 @@
 # zshrc is also sourced when the shell is started programatically
 
-# make homebrew and its libraries available
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# make homebrew and its libraries available (mac only)
+if [[ "$(uname)" == "Darwin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # don't set ZDOTDIR to this directory, to not save cache files/history here
 export ZSHCONFIG="$HOME/.config/zsh"
@@ -18,7 +20,10 @@ export VISUAL=nvim
 export DOTFILESPATH="$HOME/.config"
 
 # add go related stuff to the path
-export GOROOT="$(brew --prefix go)/libexec"
+# GOROOT is only needed on mac where brew puts go in a non-standard location
+if [[ "$(uname)" == "Darwin" ]]; then
+  export GOROOT="$(brew --prefix go)/libexec"
+fi
 export GOPATH="$HOME/go"
 
 # add pyenv to the path
@@ -29,7 +34,7 @@ pyenv() {
   pyenv "$@"
 }
 
-export PATH="$DOTFILESPATH/bin:$GOROOT/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
+export PATH="$DOTFILESPATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
 
 export OPENCODE_CONFIG="$HOME/.local/opencode.json" 
 
