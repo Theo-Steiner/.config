@@ -1,0 +1,32 @@
+{
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  },
+  "theme": "dark",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git -C ~/.local/brain pull --quiet 2>/dev/null || true",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.local/brain && git add -A && git diff --cached --quiet || (git commit -m \"brain: auto-sync $(date +%Y-%m-%dT%H:%M)\" && git push --quiet 2>/dev/null) || true",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

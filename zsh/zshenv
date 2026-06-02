@@ -36,7 +36,8 @@ pyenv() {
 
 export PATH="$DOTFILESPATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
 
-export OPENCODE_CONFIG="$HOME/.local/opencode.json" 
+export OPENCODE_CONFIG="$HOME/.local/opencode.json"
+export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
 
 # include ~/.local/zshenv, so that the environment can be extended with sensitive information locally
 source ~/.local/zshenv
