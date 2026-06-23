@@ -19,3 +19,6 @@ export FZF_ALT_C_COMMAND='fd --type d . $HOME'
 bindkey '\ex' fzf-cd-widget
 
 bindkey -s '^g' '^ugit_checkout_fzf^M'
+
+# include ~/.local/zshrc, so that the environment can be extended with sensitive information locally
+source ~/.local/zshrc
