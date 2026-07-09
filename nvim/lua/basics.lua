@@ -36,7 +36,7 @@ Set.relativenumber = true
 -- a new fold is made with visual line mode and then <za>
 Set.foldlevel = 99
 Set.foldmethod = "expr"
-Set.foldexpr = "nvim_treesitter#foldexpr()"
+Set.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 -- disable swapfiles and instead trigger autoread every time a buffer is entered/ focused
 Set.swapfile = false

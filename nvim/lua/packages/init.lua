@@ -8,6 +8,8 @@ return require("lazy").setup({
 	load.eagerly({
 		-- a collection of tools that for example improve large file handling
 		require("tools._snacks"),
+		-- Treesitter
+		require("ide._treesitter"),
 		-- colorscheme
 		require("ui._tokyonight"),
 	}),
@@ -57,8 +59,6 @@ return require("lazy").setup({
 		"tpope/vim-repeat",
 		-- git plugin by tpope
 		require("tools._fugitive"),
-		-- Treesitter
-		require("ide._treesitter"),
 		-- highlight unique letters on f press
 		require("ui._eyeliner"),
 		-- for surrounding selected code, mapped to shift-S

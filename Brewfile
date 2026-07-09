@@ -23,6 +23,7 @@ brew "fd"
 brew "direnv"
 brew "gh"
 brew "sqlc"
+brew "tree-sitter-cli"
 
 # daemons
 brew "prettierd"
