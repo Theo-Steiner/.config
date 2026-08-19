@@ -25,6 +25,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   export GOROOT="$(brew --prefix go)/libexec"
 fi
 export GOPATH="$HOME/go"
+export CARGO_HOME="$HOME/.cargo"
 
 # add pyenv to the path
 export PYENV_ROOT="$HOME/.pyenv"
@@ -34,7 +35,7 @@ pyenv() {
   pyenv "$@"
 }
 
-export PATH="$DOTFILESPATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$PATH"
+export PATH="$DOTFILESPATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$CARGO_HOME/bin:$PATH"
 
 export OPENCODE_CONFIG="$HOME/.local/opencode.jsonc"
 export CLAUDE_CONFIG_DIR="$HOME/.config/claude"

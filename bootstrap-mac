@@ -10,5 +10,10 @@ ln -s "$HOME/.config/zsh/zshrc" "$HOME/.zshrc"
 ln -s "$HOME/.config/zsh/zshenv" "$HOME/.zshenv"
 # install node 22 as a default so nvim plugins can use it
 fnm use 22 --install-if-missing
+# install rustup if not installed
+if ! command -v rustup >/dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs |
+    sh -s -- -y --no-modify-path --default-toolchain stable
+fi
 # restart shell
 zsh
