@@ -41,10 +41,14 @@ return {
 			},
 			automatic_enable = {
 				exclude = {
-					"denols"
+					"denols",
+					-- managed by rustup so it follows the active Rust toolchain
+					"rust_analyzer",
 				}
 			}
 		})
+
+		vim.lsp.enable("rust_analyzer")
 
 		-- setup diagnostics
 		require("ide.lsp.diagnostics").setup()

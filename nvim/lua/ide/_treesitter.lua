@@ -30,6 +30,7 @@ return {
 			"markdown_inline",
 			"query",
 			"regex",
+			"rust",
 			"svelte",
 			"toml",
 			"tsx",
