@@ -99,6 +99,9 @@ return {
 		"FiraCode Nerd Font Mono",
 		-- Fallback to Nerd Font symbols if glyph is not available
 		"Symbols Nerd Font",
+		-- Japanese: must come before the system default (Apple SD Gothic Neo,
+		-- a Korean font) which lacks shinjitai forms like 号 証 内 営 続
+		"Hiragino Kaku Gothic ProN",
 	}),
 	font_size = 18,
 	color_scheme = "Tokyo Night",
