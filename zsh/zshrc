@@ -4,10 +4,10 @@
 eval "$(starship init zsh)"
 # initialize direnv
 eval "$(direnv hook zsh)"
-# initialize fnm (fast node manager)
-eval "$(fnm env --use-on-cd --shell zsh)"
 # initialize zim (package manager for zsh)
 source ${ZSHCONFIG}/zim/init.zsh
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.config/vite-plus/env"
 
 alias vi=nvim
 
@@ -22,3 +22,6 @@ bindkey -s '^g' '^ugit_checkout_fzf^M'
 
 # include ~/.local/zshrc, so that the environment can be extended with sensitive information locally
 source ~/.local/zshrc
+
+# opencode (TODO: remove this once opencode2 get's out of beta & go back to using homebrew for opencode)
+export PATH=/Users/theosteiner/.opencode/bin:$PATH

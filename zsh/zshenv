@@ -35,6 +35,9 @@ pyenv() {
   pyenv "$@"
 }
 
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.config/vite-plus/env"
+
 export PATH="$DOTFILESPATH/bin:$GOPATH/bin:$PYENV_ROOT/bin:$CARGO_HOME/bin:$PATH"
 
 export OPENCODE_CONFIG="$HOME/.local/opencode.jsonc"
@@ -42,6 +45,3 @@ export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
 
 # include ~/.local/zshenv, so that the environment can be extended with sensitive information locally
 source ~/.local/zshenv
-
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
