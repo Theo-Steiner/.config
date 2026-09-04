@@ -42,3 +42,6 @@ export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
 
 # include ~/.local/zshenv, so that the environment can be extended with sensitive information locally
 source ~/.local/zshenv
+
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
