@@ -1,5 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
+	branch = "main",
 	-- get correct commentstring before commenting (configured line 18-20)
 	dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
 	lazy = false,
